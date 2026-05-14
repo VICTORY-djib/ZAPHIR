@@ -1,820 +1,203 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Food Plaza Responsive</title>
-
-    <!-- FONT AWESOME -->
-
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <style>
-
-        /* =========================
-           RESET
-        ========================= */
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background: #f5f1e8;
-        }
-
-        /* =========================
-           TOP HEADER
-        ========================= */
-
-        .top-header {
-
-            background: #efe2c2;
-
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            padding: 12px 8%;
-
-            flex-wrap: wrap;
-        }
-
-        .logo {
-
-            font-size: 35px;
-
-            font-weight: bold;
-
-            color: #2e5e2b;
-        }
-
-        .logo span {
-            color: orange;
-        }
-
-        .contact {
-            color: #444;
-        }
-
-        .contact i {
-            color: #2e5e2b;
-            margin-right: 5px;
-        }
-
-        /* =========================
-           NAVBAR
-        ========================= */
-
-        nav {
-
-            background: #2e5e2b;
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-            gap: 30px;
-
-            padding: 18px;
-
-            position: sticky;
-
-            top: 0;
-
-            z-index: 1000;
-        }
-
-        nav a {
-
-            color: white;
-
-            text-decoration: none;
-
-            font-size: 18px;
-
-            transition: 0.3s;
-        }
-
-        nav a:hover {
-            color: orange;
-        }
-
-        /* =========================
-           HERO SECTION
-        ========================= */
-
-        .hero {
-
-            height: 90vh;
-
-            background:
-                linear-gradient(rgba(0, 0, 0, 0.5),
-                    rgba(0, 0, 0, 0.5)),
-                url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1400')
-                center/cover no-repeat;
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-            text-align: center;
-
-            color: white;
-
-            padding: 20px;
-        }
-
-        .hero-content h1 {
-
-            font-size: 60px;
-
-            margin-bottom: 20px;
-        }
-
-        .hero-content p {
-
-            font-size: 24px;
-
-            margin-bottom: 30px;
-        }
-
-        .hero-content button {
-
-            padding: 15px 35px;
-
-            border: none;
-
-            background: #28a745;
-
-            color: white;
-
-            font-size: 18px;
-
-            border-radius: 5px;
-
-            cursor: pointer;
-
-            transition: 0.3s;
-        }
-
-        .hero-content button:hover {
-
-            background: orange;
-
-            transform: scale(1.05);
-        }
-
-        /* =========================
-           SECTION TITLE
-        ========================= */
-
-        .section-title {
-
-            text-align: center;
-
-            font-size: 40px;
-
-            color: #2e5e2b;
-
-            margin-bottom: 50px;
-        }
-
-        /* =========================
-           SERVICES
-        ========================= */
-
-        .services {
-
-            padding: 80px 8%;
-        }
-
-        .cards {
-
-            display: flex;
-
-            justify-content: center;
-
-            gap: 30px;
-
-            flex-wrap: wrap;
-        }
-
-        .card {
-
-            background: white;
-
-            width: 320px;
-
-            border-radius: 10px;
-
-            overflow: hidden;
-
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-
-            transition: 0.4s;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-        }
-
-        .card img {
-
-            width: 100%;
-
-            height: 220px;
-
-            object-fit: cover;
-        }
-
-        .card-content {
-            padding: 20px;
-        }
-
-        .card-content h2 {
-
-            color: #2e5e2b;
-
-            margin-bottom: 15px;
-        }
-
-        .card-content p {
-
-            color: #555;
-
-            line-height: 1.6;
-        }
-
-        /* =========================
-           MENU
-        ========================= */
-
-        .menu {
-
-            background: white;
-
-            padding: 80px 8%;
-        }
-
-        .menu-container {
-
-            display: grid;
-
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-
-            gap: 30px;
-        }
-
-        .menu-item {
-
-            background: #f7f7f7;
-
-            padding: 20px;
-
-            border-radius: 10px;
-
-            text-align: center;
-
-            transition: 0.3s;
-        }
-
-        .menu-item:hover {
-
-            background: #2e5e2b;
-
-            color: white;
-        }
-
-        .menu-item img {
-
-            width: 100%;
-
-            height: 200px;
-
-            object-fit: cover;
-
-            border-radius: 10px;
-        }
-
-        .menu-item h3 {
-
-            margin: 15px 0;
-        }
-
-        .price {
-
-            color: orange;
-
-            font-size: 22px;
-
-            font-weight: bold;
-        }
-
-        /* =========================
-           ABOUT
-        ========================= */
-
-        .about {
-
-            padding: 80px 8%;
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 50px;
-
-            flex-wrap: wrap;
-        }
-
-        .about img {
-
-            width: 500px;
-
-            max-width: 100%;
-
-            border-radius: 10px;
-        }
-
-        .about-text {
-
-            flex: 1;
-        }
-
-        .about-text h2 {
-
-            font-size: 40px;
-
-            color: #2e5e2b;
-
-            margin-bottom: 20px;
-        }
-
-        .about-text p {
-
-            line-height: 1.8;
-
-            color: #444;
-        }
-
-        /* =========================
-           CONTACT
-        ========================= */
-
-        .contact-section {
-
-            background: #2e5e2b;
-
-            color: white;
-
-            padding: 80px 8%;
-
-            text-align: center;
-        }
-
-        .contact-section h2 {
-
-            font-size: 40px;
-
-            margin-bottom: 20px;
-        }
-
-        .contact-section p {
-
-            margin-bottom: 15px;
-        }
-
-        .socials {
-
-            margin-top: 20px;
-        }
-
-        .socials i {
-
-            font-size: 25px;
-
-            margin: 10px;
-
-            cursor: pointer;
-
-            transition: 0.3s;
-        }
-
-        .socials i:hover {
-            color: orange;
-        }
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-
-            background: #1d3c1a;
-
-            color: white;
-
-            text-align: center;
-
-            padding: 20px;
-        }
-
-        /* =========================
-           RESPONSIVE TABLETTE
-        ========================= */
-
-        @media(max-width:992px) {
-
-            .hero-content h1 {
-                font-size: 45px;
-            }
-
-            nav {
-                gap: 15px;
-            }
-
-        }
-
-        /* =========================
-           RESPONSIVE TELEPHONE
-        ========================= */
-
-        @media(max-width:768px) {
-
-            .top-header {
-
-                flex-direction: column;
-
-                text-align: center;
-
-                gap: 10px;
-            }
-
-            nav {
-
-                flex-direction: column;
-
-                gap: 15px;
-            }
-
-            nav a {
-                font-size: 16px;
-            }
-
-            .hero {
-
-                height: 70vh;
-            }
-
-            .hero-content h1 {
-
-                font-size: 35px;
-            }
-
-            .hero-content p {
-
-                font-size: 18px;
-            }
-
-            .hero-content button {
-
-                width: 100%;
-            }
-
-            .cards {
-
-                flex-direction: column;
-
-                align-items: center;
-            }
-
-            .card {
-
-                width: 100%;
-
-                max-width: 350px;
-            }
-
-            .about {
-
-                flex-direction: column;
-
-                text-align: center;
-            }
-
-            .menu-container {
-
-                grid-template-columns: 1fr;
-            }
-
-        }
-
-        /* =========================
-           PETIT TELEPHONE
-        ========================= */
-
-        @media(max-width:480px) {
-
-            .hero-content h1 {
-
-                font-size: 28px;
-            }
-
-            .section-title {
-
-                font-size: 30px;
-            }
-
-            .logo {
-
-                font-size: 28px;
-            }
-
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HOME</title>
+
+<style>
+
+/* ================= RESET ================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:linear-gradient(to right,#0b6fc2,#00aaff);
+    min-height:100vh;
+}
+
+/* ================= HEADER ================= */
+header{
+    position:fixed;
+    top:10px;
+    left:50%;
+    transform:translateX(-50%);
+    background:rgba(37, 99, 235, 0.75);
+    backdrop-filter: blur(14px);
+    padding:6px 22px;
+    border-radius:30px;
+    border:1px solid rgba(255,255,255,0.25);
+    box-shadow:0 8px 25px rgba(0,0,0,0.25);
+    z-index:1000;
+    transition:all 0.3s ease;
+}
+
+header nav{
+    display:flex;
+    gap:12px;
+}
+
+header nav a{
+    color:#001f3f;
+    text-decoration:none;
+    padding:7px 18px;
+    border-radius:20px;
+    font-size:14px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+header nav a:hover{
+    background:rgba(255,255,255,0.25);
+    transform:translateY(-2px);
+}
+
+/* ================= HERO ================= */
+.hero{
+    height:100vh;
+    width:100%;
+    background:url("act.com.jpeg") center/cover no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+    padding:20px;
+}
+
+/* ================= HERO LEFT ================= */
+.hero-left{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* ================= HERO RIGHT / INTRO ================= */
+.intro{
+    max-width:500px;
+    color:#001f3f;
+    text-align:center;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(10px);
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.intro h1{
+    font-size:28px;
+    margin-bottom:20px;
+    color:black;
+}
+
+.intro p{
+    font-size:15px;
+    line-height:1.7;
+    margin-bottom:15px;
+}
+
+/* ================= CARTE GMAIL ================= */
+.gmail-card{
+    width:340px;
+    padding:26px;
+    background:rgba(255,255,255,0.10);
+    backdrop-filter:blur(16px);
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,0.22);
+    box-shadow:0 20px 45px rgba(0,0,0,0.45);
+    color:white;
+    animation:fadeIn 0.6s ease;
+}
+
+.gmail-header{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    font-size:20px;
+    font-weight:600;
+    margin-bottom:16px;
+}
+
+.gmail-header img{
+    width:36px;
+}
+
+.gmail-card p{
+    font-size:15px;
+    color:#dbe9ff;
+    margin-bottom:22px;
+    text-align:center;
+}
+
+.gmail-btn{
+    display:block;
+    width:100%;
+    padding:13px 0;
+    text-align:center;
+    background:linear-gradient(135deg,#ea4335,#c5221f);
+    border-radius:30px;
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.gmail-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 18px 35px rgba(234,67,53,0.55);
+}
+
+/* ================= ANIMATION ================= */
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(15px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+    .hero{
+        flex-direction:column;
+        padding-top:120px;
+        gap:40px;
+    }
+}
+
+</style>
 </head>
 
 <body>
 
-    <!-- HEADER -->
-
-    <div class="top-header">
-
-        <div class="logo">
-            Food<span>Plaza</span>
-        </div>
-
-        <div class="contact">
-
-            <i class="fa-solid fa-phone"></i> +253 77 11 88 30
-
-            &nbsp;&nbsp;
-
-            <i class="fa-solid fa-envelope"></i>
-
-            foodplaza@gmail.com
-
-        </div>
-
-    </div>
-
-    <!-- NAVBAR -->
-
+<header>
     <nav>
-
-        <a href="#">Accueil</a>
-
-        <a href="#services">Services</a>
-
-        <a href="#menu">Menu</a>
-
-        <a href="#about">À propos</a>
-
-        <a href="#contact">Contact</a>
-
+        <a href="#">HOME👨🏽‍💻</a>
+        <a href="cours.html">Menu Zaphir</a>
+        <a href="reseau.html">Menu Selectionnes</a>
     </nav>
+</header>
 
-    <!-- HERO -->
+<section class="hero">
 
-    <section class="hero">
-
-        <div class="hero-content">
-
-            <h1>Best Food At Your Doorsteps</h1>
-
-            <p>Restaurant moderne avec des plats délicieux</p>
-
-            <button onclick="commander()">
-                COMMANDER MAINTENANT
-            </button>
-
+<!-- GAUCHE : GMAIL -->
+<div class="hero-left">
+    <div class="gmail-card">
+        <div class="gmail-header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg">
+            <span>Gmail</span>
         </div>
 
-    </section>
-
-    <!-- SERVICES -->
-
-    <section class="services" id="services">
-
-        <h1 class="section-title">Nos Services</h1>
-
-        <div class="cards">
-
-            <div class="card">
-
-                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600">
-
-                <div class="card-content">
-
-                    <h2>Hot Pizzas</h2>
-
-                    <p>
-                        Savoureuses pizzas italiennes préparées
-                        avec des ingrédients frais.
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="card">
-
-                <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=600">
-
-                <div class="card-content">
-
-                    <h2>Burgers</h2>
-
-                    <p>
-                        Burgers délicieux avec fromage fondant
-                        et viande grillée.
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="card">
-
-                <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=600">
-
-                <div class="card-content">
-
-                    <h2>Cool Cocktails</h2>
-
-                    <p>
-                        Cocktails frais et boissons naturelles.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- MENU -->
-
-    <section class="menu" id="menu">
-
-        <h1 class="section-title">Notre Menu</h1>
-
-        <div class="menu-container">
-
-            <div class="menu-item">
-
-                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600">
-
-                <h3>Pizza Italienne</h3>
-
-                <p class="price">$12</p>
-
-            </div>
-
-            <div class="menu-item">
-
-                <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=600">
-
-                <h3>Cheese Burger</h3>
-
-                <p class="price">$10</p>
-
-            </div>
-
-            <div class="menu-item">
-
-                <img src="https://images.unsplash.com/photo-1529042410759-befb1204b468?w=600">
-
-                <h3>Sandwich Deluxe</h3>
-
-                <p class="price">$8</p>
-
-            </div>
-
-            <div class="menu-item">
-
-                <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=600">
-
-                <h3>Pasta Special</h3>
-
-                <p class="price">$15</p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- ABOUT -->
-
-    <section class="about" id="about">
-
-        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=700">
-
-        <div class="about-text">
-
-            <h2>À propos de nous</h2>
-
-            <p>
-                Food Plaza est un restaurant moderne spécialisé
-                dans les pizzas, burgers et cocktails.
-                Notre mission est d’offrir des plats délicieux
-                avec un service rapide et professionnel.
-            </p>
-
-        </div>
-
-    </section>
-
-    <!-- CONTACT -->
-
-    <section class="contact-section" id="contact">
-
-        <h2>Contactez-nous</h2>
-
-        <p>Email : foodplaza@gmail.com</p>
-
-        <p>Téléphone : +253 77 11 88 30</p>
-
-        <p>Adresse : Djibouti-ville</p>
-
-        <div class="socials">
-
-            <i class="fa-brands fa-facebook"></i>
-
-            <i class="fa-brands fa-instagram"></i>
-
-            <i class="fa-brands fa-twitter"></i>
-
-            <i class="fa-brands fa-youtube"></i>
-
-        </div>
-
-    </section>
-
-    <!-- FOOTER -->
-
-    <footer>
-
-        <p>
-            © 2026 Food Plaza Restaurant |
-            Tous droits réservés
-        </p>
-
-    </footer>
-
-    <!-- JAVASCRIPT -->
-
-    <script>
-
-        function commander() {
-
-            alert("Merci pour votre commande 🍕");
-
-        }
-
-        /* NAVBAR ANIMATION */
-
-        window.addEventListener("scroll", function () {
-
-            let nav = document.querySelector("nav");
-
-            if (window.scrollY > 50) {
-
-                nav.style.background = "#1d3c1a";
-
-            } else {
-
-                nav.style.background = "#2e5e2b";
-
-            }
-
-        });
-
-    </script>
+        <p>Envoyez-moi un message !</p>
+
+        <a class="gmail-btn" 
+           href="https://mail.google.com/mail/?view=cm&fs=1&to=Ayanlahmohamed55@gmail.com" 
+           target="_blank">
+           Écrire un message
+        </a>
+    </div>
+</div>
+
+</section>
 
 </body>
-
 </html>
