@@ -3,8 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RESEAUX-INFORMATIQUE</title>
+<title>Zaphir Restaurant</title>
+
 <style>
+
 /* RESET */
 *{
     margin:0;
@@ -16,163 +18,386 @@
 /* BODY */
 body{
     background:#f4f6fb;
-    color:#0a1f44;
-    line-height:1.8;
+    overflow-x:hidden;
 }
 
-/* HEADER FLOTTANT TRANSPARENT */
+/* HEADER */
 header{
     position:fixed;
-    top:10px;
+    top:15px;
     left:50%;
     transform:translateX(-50%);
-    background:rgba(37, 99, 235, 0.75);   /* transparence */
-    backdrop-filter: blur(14px);
-    padding:12px 24px;
-    border-radius:40px;
-    border:1px solid rgba(255,255,255,0.25);
-    box-shadow:0 8px 25px rgba(0,0,0,0.25);
+    width:90%;
+    max-width:1100px;
+    padding:14px 25px;
+    border-radius:50px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.2);
     z-index:1000;
-    transition:all 0.3s ease;
+    box-shadow:0 8px 20px rgba(0,0,0,0.25);
 }
 
-/* NAV */
-header nav{
+nav{
     display:flex;
+    justify-content:center;
     align-items:center;
-    gap:12px;
+    gap:20px;
+    flex-wrap:wrap;
 }
 
-/* LIENS */
-header nav a{
-   color:black;
+nav a{
+    color:white;
     text-decoration:none;
-    padding:9px 20px;        /* ⬅️ équilibre : court + un peu long */
-    border-radius:22px;
-    font-size:14.5px;
     font-weight:600;
-    letter-spacing:0.3px;
-    white-space:nowrap;
-    transition:all 0.3s ease;
+    padding:10px 20px;
+    border-radius:25px;
+    transition:0.3s;
 }
 
-/* SURVOL */
-header nav a:hover{
-    background:rgba(255,255,255,0.25);
-    transform:translateY(-2px);
-}
-
-/* LIEN ACTIF */
-header nav a.active{
+nav a:hover{
     background:white;
     color:#2563eb;
-    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+}
+
+nav .active{
+    background:white;
+    color:#2563eb;
 }
 
 /* HERO */
 .hero{
-    height:300px;
-    background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)), url("zaphir.jpeg") center/cover no-repeat;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:white;
+    width:100%;
+    height:100vh;
+    position:relative;
+    overflow:hidden;
+}
+
+/* SLIDES */
+.slide{
+    position:absolute;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+
+    /* PHOTO CLAIRE */
+    filter:brightness(1.15) contrast(1.05);
+
+    opacity:0;
+    transition:opacity 1s ease-in-out;
+}
+
+.slide.active{
+    opacity:1;
+}
+
+/* OVERLAY */
+.overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.20);
+    z-index:1;
+}
+
+/* HERO CONTENT */
+.hero-content{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
     text-align:center;
-}
-.hero h1{
-    font-size:40px;
-}
-
-/* CONTENU PAGE */
-main{
-    max-width:1200px;
-    margin:110px auto 40px;
-    padding:25px 20px;
-    background:white;
-    border-radius:12px;
-    box-shadow:0 6px 20px rgba(0,0,0,0.1);
-}
-
-/* MODULES */
-.module{
-    background:#e0e7ff;
-    padding:30px;
-    margin-bottom:45px;
-    border-left:6px solid #2563eb;
-    border-radius:6px;
-}
-.module h2{
-    color:#1e3a8a;
-    margin-bottom:15px;
-}
-.module p{
-    margin-bottom:15px;
-    text-align:justify;
-}
-
-/* QCM */
-.qcm{
-    background:linear-gradient(180deg,#1e3a8a,#0f2557);
-    border:2px solid rgba(255,255,255,0.25);
-    border-radius:14px;
-    padding:20px;
     color:white;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.15);
+    z-index:2;
+    width:90%;
 }
-.qcm h3{
-    margin-bottom:10px;
+
+.hero-content h1{
+    font-size:70px;
+    margin-bottom:15px;
+    text-shadow:0 5px 15px rgba(0,0,0,0.5);
 }
-.qcm label{
-    display:block;
-    margin:8px 0;
+
+.hero-content p{
+    font-size:22px;
+    margin-bottom:25px;
+    text-shadow:0 3px 10px rgba(0,0,0,0.5);
 }
-.qcm button{
-    margin-top:10px;
-    padding:8px 16px;
+
+.hero-content button{
+    padding:15px 35px;
+    border:none;
+    border-radius:40px;
     background:#2563eb;
     color:white;
-    border:none;
-    border-radius:5px;
+    font-size:18px;
     cursor:pointer;
-    transition:all 0.3s ease;
+    transition:0.3s;
 }
-.qcm button:hover{
-    background:#1e3a8a;
-    transform:translateY(-2px);
+
+.hero-content button:hover{
+    transform:translateY(-3px);
+    background:#1e40af;
 }
-.result{
-    margin-top:10px;
-    font-weight:bold;
+
+/* BUTTONS */
+.prev,
+.next{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:60px;
+    height:60px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,0.25);
+    color:white;
+    font-size:35px;
+    cursor:pointer;
+    z-index:3;
+    transition:0.3s;
 }
-.correct{
-    color:darkgreen;
+
+.prev:hover,
+.next:hover{
+    background:#2563eb;
 }
-.wrong{
-    color:darkred;
+
+.prev{
+    left:20px;
+}
+
+.next{
+    right:20px;
+}
+
+/* SECTION */
+.section{
+    padding:80px 20px;
+    text-align:center;
+}
+
+.section h2{
+    font-size:40px;
+    color:#1e3a8a;
+    margin-bottom:20px;
+}
+
+.section p{
+    max-width:850px;
+    margin:auto;
+    font-size:18px;
+    color:#444;
+}
+
+/* CARDS */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+    margin-top:50px;
+}
+
+.card{
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 8px 25px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.card h3{
+    padding:15px;
+    color:#1e3a8a;
+}
+
+.card p{
+    padding:0 15px 20px;
 }
 
 /* FOOTER */
 footer{
-    background:#2563eb;
+    background:#1e3a8a;
     color:white;
     text-align:center;
-    padding:20px;
-    margin-top:40px;
+    padding:25px;
 }
+
+/* RESPONSIVE */
+@media(max-width:768px){
+
+    .hero-content h1{
+        font-size:42px;
+    }
+
+    .hero-content p{
+        font-size:18px;
+    }
+
+    .prev,
+    .next{
+        width:45px;
+        height:45px;
+        font-size:25px;
+    }
+
+    nav{
+        gap:10px;
+    }
+
+    nav a{
+        font-size:14px;
+        padding:8px 15px;
+    }
+}
+
 </style>
 </head>
+
 <body>
 
+<!-- HEADER -->
 <header>
 <nav>
-    <a href="index.html">Home-Zaphir</a>
-    <a href="cours.html">Menu-choix</a>
-    <a class="active" href="reseau.html">Menu-selecton</a>
+    <a class="active" href="#">Home-Zaphir</a>
+    <a href="#">Menu-Choix</a>
+    <a href="#">Menu-Selection</a>
+    <a href="#">Contact</a>
 </nav>
 </header>
 
+<!-- HERO -->
 <section class="hero">
-    <h1>Bienvenu Zaphir</h1>
+
+    <!-- PHOTOS -->
+    <img src="zaphir1.jpg" class="slide active">
+    <img src="zaphir2.jpg" class="slide">
+    <img src="zaphir3.jpg" class="slide">
+    <img src="zaphir4.jpg" class="slide">
+    <img src="zaphir5.jpg" class="slide">
+
+    <!-- OVERLAY -->
+    <div class="overlay"></div>
+
+    <!-- CONTENT -->
+    <div class="hero-content">
+        <h1>Bienvenue Chez Zaphir</h1>
+        <p>Best Delicious Food At Your Doorsteps</p>
+        <button>Commander Maintenant</button>
+    </div>
+
+    <!-- BUTTONS -->
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+
 </section>
 
+<!-- SECTION -->
+<section class="section">
+
+    <h2>Nos Meilleurs Plats</h2>
+
+    <p>
+        Découvrez les meilleurs plats délicieux préparés avec passion.
+        Qualité, saveur et service moderne pour une expérience unique.
+    </p>
+
+    <div class="cards">
+
+        <div class="card">
+            <img src="zaphir1.jpg">
+            <h3>Burger Spécial</h3>
+            <p>Délicieux burger avec viande grillée et fromage fondant.</p>
+        </div>
+
+        <div class="card">
+            <img src="zaphir2.jpg">
+            <h3>Pizza Italienne</h3>
+            <p>Pizza chaude avec ingrédients frais et mozzarella.</p>
+        </div>
+
+        <div class="card">
+            <img src="zaphir3.jpg">
+            <h3>Poulet Crispy</h3>
+            <p>Poulet croustillant avec sauce spéciale Zaphir.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+    © 2026 Zaphir Restaurant | Tous droits réservés
+</footer>
+
+<script>
+
+/* SLIDER */
+
+const slides = document.querySelectorAll(".slide");
+const nextBtn = document.querySelector(".next");
+const prevBtn = document.querySelector(".prev");
+
+let index = 0;
+
+/* SHOW */
+function showSlide(i){
+
+    slides.forEach(slide =>{
+        slide.classList.remove("active");
+    });
+
+    slides[i].classList.add("active");
+}
+
+/* NEXT */
+nextBtn.addEventListener("click", ()=>{
+
+    index++;
+
+    if(index >= slides.length){
+        index = 0;
+    }
+
+    showSlide(index);
+});
+
+/* PREV */
+prevBtn.addEventListener("click", ()=>{
+
+    index--;
+
+    if(index < 0){
+        index = slides.length - 1;
+    }
+
+    showSlide(index);
+});
+
+/* AUTO SLIDE */
+setInterval(()=>{
+
+    index++;
+
+    if(index >= slides.length){
+        index = 0;
+    }
+
+    showSlide(index);
+
+}, 4000);
+
 </script>
+
+</body>
+</html>
