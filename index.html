@@ -27,8 +27,8 @@ header{
     top:15px;
     left:50%;
     transform:translateX(-50%);
-    width:90%;
-    max-width:1100px;
+    width:92%;
+    max-width:1200px;
     padding:14px 25px;
     border-radius:50px;
     background:rgba(255,255,255,0.15);
@@ -68,7 +68,10 @@ nav .active{
 /* HERO */
 .hero{
     width:100%;
-    height:100vh;
+
+    /* PHOTO MOINS LONGUE */
+    height:75vh;
+
     position:relative;
     overflow:hidden;
 }
@@ -95,7 +98,7 @@ nav .active{
 .overlay{
     position:absolute;
     inset:0;
-    background:rgba(0,0,0,0.20);
+    background:rgba(0,0,0,0.25);
     z-index:1;
 }
 
@@ -172,12 +175,12 @@ nav .active{
 
 /* SECTION */
 .section{
-    padding:80px 20px;
+    padding:90px 20px;
     text-align:center;
 }
 
 .section h2{
-    font-size:40px;
+    font-size:42px;
     color:#1e3a8a;
     margin-bottom:20px;
 }
@@ -187,12 +190,13 @@ nav .active{
     margin:auto;
     font-size:18px;
     color:#444;
+    line-height:1.7;
 }
 
 /* CARDS */
 .cards{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
     gap:25px;
     margin-top:50px;
 }
@@ -218,10 +222,62 @@ nav .active{
 .card h3{
     padding:15px;
     color:#1e3a8a;
+    font-size:24px;
 }
 
 .card p{
-    padding:0 15px 20px;
+    padding:0 15px 25px;
+    font-size:16px;
+}
+
+/* CONTACT */
+.contact{
+    background:white;
+    padding:80px 20px;
+    text-align:center;
+}
+
+.contact h2{
+    font-size:42px;
+    color:#1e3a8a;
+    margin-bottom:20px;
+}
+
+.contact-container{
+    max-width:700px;
+    margin:auto;
+}
+
+.contact input,
+.contact textarea{
+    width:100%;
+    padding:16px;
+    margin:12px 0;
+    border:none;
+    border-radius:15px;
+    background:#eef2ff;
+    font-size:16px;
+}
+
+.contact textarea{
+    resize:none;
+    height:150px;
+}
+
+.contact button{
+    margin-top:15px;
+    padding:15px 35px;
+    border:none;
+    border-radius:35px;
+    background:#2563eb;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.contact button:hover{
+    background:#1e40af;
 }
 
 /* FOOTER */
@@ -229,18 +285,45 @@ footer{
     background:#1e3a8a;
     color:white;
     text-align:center;
-    padding:25px;
+    padding:30px 20px;
+}
+
+footer p{
+    margin:8px 0;
 }
 
 /* RESPONSIVE */
 @media(max-width:768px){
 
+    header{
+        border-radius:25px;
+        padding:12px;
+    }
+
+    nav{
+        gap:10px;
+    }
+
+    nav a{
+        font-size:13px;
+        padding:8px 12px;
+    }
+
+    .hero{
+        height:60vh;
+    }
+
     .hero-content h1{
-        font-size:42px;
+        font-size:40px;
     }
 
     .hero-content p{
         font-size:18px;
+    }
+
+    .hero-content button{
+        padding:13px 28px;
+        font-size:16px;
     }
 
     .prev,
@@ -250,13 +333,9 @@ footer{
         font-size:25px;
     }
 
-    nav{
-        gap:10px;
-    }
-
-    nav a{
-        font-size:14px;
-        padding:8px 15px;
+    .section h2,
+    .contact h2{
+        font-size:32px;
     }
 }
 
@@ -267,12 +346,14 @@ footer{
 
 <!-- HEADER -->
 <header>
+
 <nav>
     <a class="active" href="#">Home-Zaphir</a>
     <a href="#">Menu-Choix</a>
     <a href="#">Menu-Selection</a>
     <a href="#">Contact</a>
 </nav>
+
 </header>
 
 <!-- HERO -->
@@ -290,8 +371,17 @@ footer{
 
     <!-- CONTENT -->
     <div class="hero-content">
+
         <h1>Bienvenue Chez Zaphir</h1>
-        <p>Best Delicious Food </p>
+
+        <p>
+            Best Delicious Food At Your Doorsteps
+        </p>
+
+        <button>
+            Commander Maintenant
+        </button>
+
     </div>
 
     <!-- BUTTONS -->
@@ -313,22 +403,59 @@ footer{
     <div class="cards">
 
         <div class="card">
-            <img src="zaphir1.jpg">
+
+            <img src="zaphir2.jpeg">
+
             <h3>Burger Spécial</h3>
-            <p>Délicieux burger avec viande grillée et fromage fondant.</p>
+
+            <p>
+                Délicieux burger avec viande grillée et fromage fondant.
+            </p>
+
         </div>
 
         <div class="card">
-            <img src="zaphir2.jpg">
+
+            <img src="zaphir2.jpeg">
+
             <h3>Pizza Italienne</h3>
-            <p>Pizza chaude avec ingrédients frais et mozzarella.</p>
+
+            <p>
+                Pizza chaude avec ingrédients frais et mozzarella.
+            </p>
+
         </div>
 
         <div class="card">
-            <img src="zaphir3.jpg">
+
+            <img src="zaphir4.jpeg">
+
             <h3>Poulet Crispy</h3>
-            <p>Poulet croustillant avec sauce spéciale Zaphir.</p>
+
+            <p>
+                Poulet croustillant avec sauce spéciale Zaphir.
+            </p>
+
         </div>
+
+    </div>
+
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+
+    <h2>Contactez-Nous</h2>
+
+    <div class="contact-container">
+
+        <input type="text" placeholder="Votre nom">
+
+        <input type="email" placeholder="Votre email">
+
+        <textarea placeholder="Votre message"></textarea>
+
+        <button>Envoyer</button>
 
     </div>
 
@@ -336,7 +463,15 @@ footer{
 
 <!-- FOOTER -->
 <footer>
-    © 2026 Zaphir Restaurant | Tous droits réservés
+
+    <p>
+        © 2026 Zaphir Restaurant
+    </p>
+
+    <p>
+        Tous droits réservés
+    </p>
+
 </footer>
 
 <script>
@@ -369,6 +504,7 @@ nextBtn.addEventListener("click", ()=>{
     }
 
     showSlide(index);
+
 });
 
 /* PREV */
@@ -381,6 +517,7 @@ prevBtn.addEventListener("click", ()=>{
     }
 
     showSlide(index);
+
 });
 
 /* AUTO SLIDE */
@@ -398,3 +535,5 @@ setInterval(()=>{
 
 </script>
 
+</body>
+</html>
