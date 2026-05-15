@@ -3,232 +3,176 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HOME</title>
-
+<title>RESEAUX-INFORMATIQUE</title>
 <style>
-
-/* ================= RESET ================= */
+/* RESET */
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, sans-serif;
+    font-family:"Segoe UI", Arial, sans-serif;
 }
 
+/* BODY */
 body{
-    background:linear-gradient(to right,#0b6fc2,#00aaff);
-    min-height:100vh;
+    background:#f4f6fb;
+    color:#0a1f44;
+    line-height:1.8;
 }
 
-/* ================= HEADER ================= */
+/* HEADER FLOTTANT TRANSPARENT */
 header{
     position:fixed;
     top:10px;
     left:50%;
     transform:translateX(-50%);
-    background:rgba(37, 99, 235, 0.75);
+    background:rgba(37, 99, 235, 0.75);   /* transparence */
     backdrop-filter: blur(14px);
-    padding:6px 22px;
-    border-radius:30px;
+    padding:12px 24px;
+    border-radius:40px;
     border:1px solid rgba(255,255,255,0.25);
     box-shadow:0 8px 25px rgba(0,0,0,0.25);
     z-index:1000;
     transition:all 0.3s ease;
 }
 
+/* NAV */
 header nav{
     display:flex;
+    align-items:center;
     gap:12px;
 }
 
+/* LIENS */
 header nav a{
-    color:#001f3f;
+   color:black;
     text-decoration:none;
-    padding:7px 18px;
-    border-radius:20px;
-    font-size:14px;
+    padding:9px 20px;        /* ⬅️ équilibre : court + un peu long */
+    border-radius:22px;
+    font-size:14.5px;
     font-weight:600;
-    transition:0.3s;
+    letter-spacing:0.3px;
+    white-space:nowrap;
+    transition:all 0.3s ease;
 }
 
+/* SURVOL */
 header nav a:hover{
     background:rgba(255,255,255,0.25);
     transform:translateY(-2px);
 }
 
+/* LIEN ACTIF */
+header nav a.active{
+    background:white;
+    color:#2563eb;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* HERO */
 .hero{
-    width:100%;
-    min-height:100vh;
-
-    /* IMAGE RESPONSIVE */
-    background-image:url("zaphir.jpeg");
-    background-position:center;
-    background-size:cover;
-    background-repeat:no-repeat;
-
-    /* ALIGNEMENT */
+    height:300px;
+    background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)), url("zaphir.jpeg") center/cover no-repeat;
     display:flex;
     align-items:center;
-    justify-content:space-around;
-    flex-wrap:wrap;
-    gap:30px;
-
-    padding:20px;
-
-    overflow:hidden;
-}
-
-/* TABLETTE */
-@media screen and (max-width:992px){
-    .hero{
-        flex-direction:column;
-        justify-content:center;
-        text-align:center;
-        padding:50px 20px;
-    }
-}
-
-/* TÉLÉPHONE */
-@media screen and (max-width:600px){
-    .hero{
-        min-height:auto;
-        padding:80px 15px;
-        background-position:center;
-    }
-}
-
-/* ================= HERO LEFT ================= */
-.hero-left{
-    display:flex;
     justify-content:center;
-    align-items:center;
-}
-
-/* ================= HERO RIGHT / INTRO ================= */
-.intro{
-    max-width:500px;
-    color:#001f3f;
+    color:white;
     text-align:center;
-    background:rgba(255,255,255,0.15);
-    backdrop-filter:blur(10px);
+}
+.hero h1{
+    font-size:40px;
+}
+
+/* CONTENU PAGE */
+main{
+    max-width:1200px;
+    margin:110px auto 40px;
+    padding:25px 20px;
+    background:white;
+    border-radius:12px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.1);
+}
+
+/* MODULES */
+.module{
+    background:#e0e7ff;
     padding:30px;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    margin-bottom:45px;
+    border-left:6px solid #2563eb;
+    border-radius:6px;
 }
-
-.intro h1{
-    font-size:28px;
-    margin-bottom:20px;
-    color:black;
-}
-
-.intro p{
-    font-size:15px;
-    line-height:1.7;
+.module h2{
+    color:#1e3a8a;
     margin-bottom:15px;
 }
+.module p{
+    margin-bottom:15px;
+    text-align:justify;
+}
 
-/* ================= CARTE GMAIL ================= */
-.gmail-card{
-    width:340px;
-    padding:26px;
-    background:rgba(255,255,255,0.10);
-    backdrop-filter:blur(16px);
-    border-radius:20px;
-    border:1px solid rgba(255,255,255,0.22);
-    box-shadow:0 20px 45px rgba(0,0,0,0.45);
+/* QCM */
+.qcm{
+    background:linear-gradient(180deg,#1e3a8a,#0f2557);
+    border:2px solid rgba(255,255,255,0.25);
+    border-radius:14px;
+    padding:20px;
     color:white;
-    animation:fadeIn 0.6s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.15);
 }
-
-.gmail-header{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    font-size:20px;
-    font-weight:600;
-    margin-bottom:16px;
+.qcm h3{
+    margin-bottom:10px;
 }
-
-.gmail-header img{
-    width:36px;
-}
-
-.gmail-card p{
-    font-size:15px;
-    color:#dbe9ff;
-    margin-bottom:22px;
-    text-align:center;
-}
-
-.gmail-btn{
+.qcm label{
     display:block;
-    width:100%;
-    padding:13px 0;
-    text-align:center;
-    background:linear-gradient(135deg,#ea4335,#c5221f);
-    border-radius:30px;
+    margin:8px 0;
+}
+.qcm button{
+    margin-top:10px;
+    padding:8px 16px;
+    background:#2563eb;
     color:white;
-    text-decoration:none;
-    font-weight:600;
-    transition:0.3s;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    transition:all 0.3s ease;
+}
+.qcm button:hover{
+    background:#1e3a8a;
+    transform:translateY(-2px);
+}
+.result{
+    margin-top:10px;
+    font-weight:bold;
+}
+.correct{
+    color:darkgreen;
+}
+.wrong{
+    color:darkred;
 }
 
-.gmail-btn:hover{
-    transform:translateY(-3px);
-    box-shadow:0 18px 35px rgba(234,67,53,0.55);
+/* FOOTER */
+footer{
+    background:#2563eb;
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin-top:40px;
 }
-
-/* ================= ANIMATION ================= */
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(15px);}
-    to{opacity:1; transform:translateY(0);}
-}
-
-/* ================= RESPONSIVE ================= */
-@media(max-width:768px){
-    .hero{
-        flex-direction:column;
-        padding-top:120px;
-        gap:40px;
-    }
-}
-
 </style>
 </head>
-
 <body>
 
 <header>
-    <nav>
-        <a href="#">HOME </a>
-        <a href="cours.html">Menu-choix</a>
-        <a href="reseau.html">Menu-selection</a>
-        <a href="exo.html">contact</a>
-    </nav>
+<nav>
+    <a href="index.html">Home-Zaphir</a>
+    <a href="cours.html">Menu-choix</a>
+    <a class="active" href="reseau.html">Menu-selecton</a>
+</nav>
 </header>
 
 <section class="hero">
-
-<!-- GAUCHE : GMAIL -->
-<div class="hero-left">
-    <div class="gmail-card">
-        <div class="gmail-header">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg">
-            <span>Gmail</span>
-        </div>
-
-        <p>Envoyez-moi un message !</p>
-
-        <a class="gmail-btn" 
-           href="https://mail.google.com/mail/?view=cm&fs=1&to=Ayanlahmohamed55@gmail.com" 
-           target="_blank">
-           Écrire un message
-        </a>
-    </div>
-</div>
-
+    <h1>Bienvenu Zaphir</h1>
 </section>
 
-</body>
-</html>
+</script>
