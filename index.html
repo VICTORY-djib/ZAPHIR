@@ -68,17 +68,24 @@ nav .active{
 /* HERO */
 .hero{
     width:100%;
+
+    /* PHOTO MOINS LONGUE */
     height:75vh;
+
     position:relative;
     overflow:hidden;
 }
 
+/* SLIDES */
 .slide{
     position:absolute;
     width:100%;
     height:100%;
     object-fit:cover;
+
+    /* PHOTO CLAIRE */
     filter:brightness(1.15) contrast(1.05);
+
     opacity:0;
     transition:opacity 1s ease-in-out;
 }
@@ -87,6 +94,7 @@ nav .active{
     opacity:1;
 }
 
+/* OVERLAY */
 .overlay{
     position:absolute;
     inset:0;
@@ -94,6 +102,7 @@ nav .active{
     z-index:1;
 }
 
+/* HERO CONTENT */
 .hero-content{
     position:absolute;
     top:50%;
@@ -106,43 +115,90 @@ nav .active{
 }
 
 .hero-content h1{
-    font-size:60px;
+    font-size:70px;
+    margin-bottom:15px;
+    text-shadow:0 5px 15px rgba(0,0,0,0.5);
 }
 
 .hero-content p{
-    font-size:20px;
+    font-size:22px;
+    margin-bottom:25px;
+    text-shadow:0 3px 10px rgba(0,0,0,0.5);
 }
 
-.prev,.next{
+.hero-content button{
+    padding:15px 35px;
+    border:none;
+    border-radius:40px;
+    background:#2563eb;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.hero-content button:hover{
+    transform:translateY(-3px);
+    background:#1e40af;
+}
+
+/* BUTTONS */
+.prev,
+.next{
     position:absolute;
     top:50%;
     transform:translateY(-50%);
-    width:55px;
-    height:55px;
+    width:60px;
+    height:60px;
     border:none;
     border-radius:50%;
     background:rgba(255,255,255,0.25);
     color:white;
-    font-size:30px;
+    font-size:35px;
     cursor:pointer;
     z-index:3;
+    transition:0.3s;
 }
 
-.prev{left:20px;}
-.next{right:20px;}
+.prev:hover,
+.next:hover{
+    background:#2563eb;
+}
+
+.prev{
+    left:20px;
+}
+
+.next{
+    right:20px;
+}
 
 /* SECTION */
 .section{
-    padding:80px 20px;
+    padding:90px 20px;
     text-align:center;
+}
+
+.section h2{
+    font-size:42px;
+    color:#1e3a8a;
+    margin-bottom:20px;
+}
+
+.section p{
+    max-width:850px;
+    margin:auto;
+    font-size:18px;
+    color:#444;
+    line-height:1.7;
 }
 
 /* CARDS */
 .cards{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
     gap:25px;
-    margin-top:40px;
+    margin-top:50px;
 }
 
 .card{
@@ -150,6 +206,11 @@ nav .active{
     border-radius:20px;
     overflow:hidden;
     box-shadow:0 8px 25px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
 }
 
 .card img{
@@ -158,103 +219,123 @@ nav .active{
     object-fit:cover;
 }
 
+.card h3{
+    padding:15px;
+    color:#1e3a8a;
+    font-size:24px;
+}
+
+.card p{
+    padding:0 15px 25px;
+    font-size:16px;
+}
+
+/* CONTACT */
+.contact{
+    background:white;
+    padding:80px 20px;
+    text-align:center;
+}
+
+.contact h2{
+    font-size:42px;
+    color:#1e3a8a;
+    margin-bottom:20px;
+}
+
+.contact-container{
+    max-width:700px;
+    margin:auto;
+}
+
+.contact input,
+.contact textarea{
+    width:100%;
+    padding:16px;
+    margin:12px 0;
+    border:none;
+    border-radius:15px;
+    background:#eef2ff;
+    font-size:16px;
+}
+
+.contact textarea{
+    resize:none;
+    height:150px;
+}
+
+.contact button{
+    margin-top:15px;
+    padding:15px 35px;
+    border:none;
+    border-radius:35px;
+    background:#2563eb;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.contact button:hover{
+    background:#1e40af;
+}
+
 /* FOOTER */
 footer{
     background:#1e3a8a;
     color:white;
     text-align:center;
-    padding:30px;
+    padding:30px 20px;
 }
 
-/* ===================== */
-/* POPUP MENU */
-/* ===================== */
-
-.popup{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.7);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    z-index:2000;
-}
-
-.popup.active{
-    display:flex;
-}
-
-.popup-content{
-    width:95%;
-    max-width:1100px;
-    background:white;
-    border-radius:25px;
-    padding:30px;
-    position:relative;
-}
-
-.close-btn{
-    position:absolute;
-    top:10px;
-    right:20px;
-    font-size:35px;
-    cursor:pointer;
-}
-
-/* 3 FENÊTRES ALIGNÉES */
-.menu-grid{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
-    margin-top:20px;
-}
-
-.menu-box{
-    width:300px;
-    background:#f4f6fb;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:0 8px 20px rgba(0,0,0,0.1);
-    transition:0.3s;
-}
-
-.menu-box:hover{
-    transform:translateY(-10px);
-}
-
-.menu-box img{
-    width:100%;
-    height:200px;
-    object-fit:cover;
-}
-
-.menu-box h3{
-    text-align:center;
-    padding:15px;
-    background:#eef2ff;
-    color:#1e3a8a;
-}
-
-.menu-box ul{
-    list-style:none;
-    padding:15px;
-}
-
-.menu-box ul li{
-    padding:10px 0;
-    border-bottom:1px solid #ddd;
+footer p{
+    margin:8px 0;
 }
 
 /* RESPONSIVE */
-@media(max-width:900px){
-    .menu-grid{
-        flex-direction:column;
-        align-items:center;
+@media(max-width:768px){
+
+    header{
+        border-radius:25px;
+        padding:12px;
     }
 
-    .menu-box{
-        width:90%;
+    nav{
+        gap:10px;
+    }
+
+    nav a{
+        font-size:13px;
+        padding:8px 12px;
+    }
+
+    .hero{
+        height:60vh;
+    }
+
+    .hero-content h1{
+        font-size:40px;
+    }
+
+    .hero-content p{
+        font-size:18px;
+    }
+
+    .hero-content button{
+        padding:13px 28px;
+        font-size:16px;
+    }
+
+    .prev,
+    .next{
+        width:45px;
+        height:45px;
+        font-size:25px;
+    }
+
+    .section h2,
+    .contact h2{
+        font-size:32px;
     }
 }
 
@@ -263,133 +344,179 @@ footer{
 
 <body>
 
+<!-- HEADER -->
 <header>
+
 <nav>
     <a class="active" href="#">Home-Zaphir</a>
-    <a href="#" id="openMenu">Menu-Choix</a>
+    <a href="#">Menu-Choix</a>
     <a href="#">Menu-Selection</a>
 </nav>
+
 </header>
 
 <!-- HERO -->
 <section class="hero">
 
+    <!-- PHOTOS -->
     <img src="zaphir1.jpeg" class="slide active">
     <img src="zaphir2.jpeg" class="slide">
     <img src="zaphir3.jpeg" class="slide">
+    <img src="zaphir4.jpeg" class="slide">
+    <img src="zaphir6.jpeg" class="slide">
 
+    <!-- OVERLAY -->
     <div class="overlay"></div>
 
+    <!-- CONTENT -->
     <div class="hero-content">
+
         <h1>Bienvenue Chez Zaphir</h1>
-        <p>Best Delicious Food</p>
+
+        <p>
+            Best Delicious Food
+        </p>
+
+        <button>
+            Nourriture Naturel
+        </button>
+
     </div>
 
+    <!-- BUTTONS -->
     <button class="prev">&#10094;</button>
     <button class="next">&#10095;</button>
 
 </section>
 
-<!-- POPUP -->
-<div class="popup" id="menuPopup">
+<!-- SECTION -->
+<section class="section">
 
-    <div class="popup-content">
+    <h2>Nos Meilleurs Plats</h2>
 
-        <span class="close-btn" id="closeMenu">&times;</span>
+    <p>
+        Découvrez les meilleurs plats délicieux préparés avec passion.
+        Qualité, saveur et service moderne pour une expérience unique.
+    </p>
 
-        <h2 style="text-align:center;color:#1e3a8a;">
-            Menu Zaphir
-        </h2>
+    <div class="cards">
 
-        <div class="menu-grid">
+        <div class="card">
 
-            <div class="menu-box">
-                <img src="zaphir2.jpeg">
-                <h3>Plats Principaux</h3>
-                <ul>
-                    <li>Burger</li>
-                    <li>Pizza</li>
-                    <li>Poulet</li>
-                </ul>
-            </div>
+            <img src="zaphir1.jpg">
 
-            <div class="menu-box">
-                <img src="zaphir3.jpeg">
-                <h3>Croissant & Tarte</h3>
-                <ul>
-                    <li>Croissant</li>
-                    <li>Tarte Fraise</li>
-                    <li>Tarte Chocolat</li>
-                </ul>
-            </div>
+            <h3>Burger Spécial</h3>
 
-            <div class="menu-box">
-                <img src="zaphir4.jpeg">
-                <h3>Jus & Coffee</h3>
-                <ul>
-                    <li>Café</li>
-                    <li>Jus Orange</li>
-                    <li>Milkshake</li>
-                </ul>
-            </div>
+            <p>
+                Délicieux burger avec viande grillée et fromage fondant.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <img src="zaphir2.jpg">
+
+            <h3>Pizza Italienne</h3>
+
+            <p>
+                Pizza chaude avec ingrédients frais et mozzarella.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <img src="zaphir3.jpg">
+
+            <h3>Poulet Crispy</h3>
+
+            <p>
+                Poulet croustillant avec sauce spéciale Zaphir.
+            </p>
 
         </div>
 
     </div>
-</div>
 
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+
+</section>
+
+<!-- FOOTER -->
 <footer>
-    <p>© 2026 Zaphir Restaurant</p>
+
+    <p>
+        © 2026 Zaphir Restaurant
+    </p>
+
+    <p>
+        Tous droits réservés
+    </p>
+
 </footer>
 
 <script>
 
 /* SLIDER */
+
 const slides = document.querySelectorAll(".slide");
 const nextBtn = document.querySelector(".next");
 const prevBtn = document.querySelector(".prev");
 
 let index = 0;
 
+/* SHOW */
 function showSlide(i){
-    slides.forEach(s => s.classList.remove("active"));
+
+    slides.forEach(slide =>{
+        slide.classList.remove("active");
+    });
+
     slides[i].classList.add("active");
 }
 
-nextBtn.onclick = ()=>{
-    index = (index + 1) % slides.length;
-    showSlide(index);
-};
+/* NEXT */
+nextBtn.addEventListener("click", ()=>{
 
-prevBtn.onclick = ()=>{
-    index = (index - 1 + slides.length) % slides.length;
-    showSlide(index);
-};
+    index++;
 
-setInterval(()=>{
-    index = (index + 1) % slides.length;
-    showSlide(index);
-},4000);
-
-/* POPUP MENU */
-const openMenu = document.getElementById("openMenu");
-const closeMenu = document.getElementById("closeMenu");
-const popup = document.getElementById("menuPopup");
-
-openMenu.onclick = (e)=>{
-    e.preventDefault();
-    popup.classList.add("active");
-};
-
-closeMenu.onclick = ()=>{
-    popup.classList.remove("active");
-};
-
-popup.onclick = (e)=>{
-    if(e.target === popup){
-        popup.classList.remove("active");
+    if(index >= slides.length){
+        index = 0;
     }
-};
+
+    showSlide(index);
+
+});
+
+/* PREV */
+prevBtn.addEventListener("click", ()=>{
+
+    index--;
+
+    if(index < 0){
+        index = slides.length - 1;
+    }
+
+    showSlide(index);
+
+});
+
+/* AUTO SLIDE */
+setInterval(()=>{
+
+    index++;
+
+    if(index >= slides.length){
+        index = 0;
+    }
+
+    showSlide(index);
+
+}, 4000);
 
 </script>
 
