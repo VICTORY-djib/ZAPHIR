@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HOME</title>
+
+<style>
+
+/* ================= RESET ================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:linear-gradient(to right,#0b6fc2,#00aaff);
+    min-height:100vh;
+}
+
+/* ================= HEADER ================= */
+header{
+    position:fixed;
+    top:10px;
+    left:50%;
+    transform:translateX(-50%);
+    background:rgba(37, 99, 235, 0.75);
+    backdrop-filter: blur(14px);
+    padding:6px 22px;
+    border-radius:30px;
+    border:1px solid rgba(255,255,255,0.25);
+    box-shadow:0 8px 25px rgba(0,0,0,0.25);
+    z-index:1000;
+    transition:all 0.3s ease;
+}
+
+header nav{
+    display:flex;
+    gap:12px;
+}
+
+header nav a{
+    color:#001f3f;
+    text-decoration:none;
+    padding:7px 18px;
+    border-radius:20px;
+    font-size:14px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+header nav a:hover{
+    background:rgba(255,255,255,0.25);
+    transform:translateY(-2px);
+}
+
+/* ================= HERO ================= */
+.hero{
+    height:100vh;
+    width:100%;
+    background:url("zaphir.jpeg") center/cover no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+    padding:20px;
+}
+
+/* ================= HERO LEFT ================= */
+.hero-left{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* ================= HERO RIGHT / INTRO ================= */
+.intro{
+    max-width:500px;
+    color:#001f3f;
+    text-align:center;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(10px);
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.intro h1{
+    font-size:28px;
+    margin-bottom:20px;
+    color:black;
+}
+
+.intro p{
+    font-size:15px;
+    line-height:1.7;
+    margin-bottom:15px;
+}
+
+/* ================= CARTE GMAIL ================= */
+.gmail-card{
+    width:340px;
+    padding:26px;
+    background:rgba(255,255,255,0.10);
+    backdrop-filter:blur(16px);
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,0.22);
+    box-shadow:0 20px 45px rgba(0,0,0,0.45);
+    color:white;
+    animation:fadeIn 0.6s ease;
+}
+
+.gmail-header{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    font-size:20px;
+    font-weight:600;
+    margin-bottom:16px;
+}
+
+.gmail-header img{
+    width:36px;
+}
+
+.gmail-card p{
+    font-size:15px;
+    color:#dbe9ff;
+    margin-bottom:22px;
+    text-align:center;
+}
+
+.gmail-btn{
+    display:block;
+    width:100%;
+    padding:13px 0;
+    text-align:center;
+    background:linear-gradient(135deg,#ea4335,#c5221f);
+    border-radius:30px;
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.gmail-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 18px 35px rgba(234,67,53,0.55);
+}
+
+/* ================= ANIMATION ================= */
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(15px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+    .hero{
+        flex-direction:column;
+        padding-top:120px;
+        gap:40px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <a href="#">HOME </a>
+        <a href="cours.html">Menu-choix</a>
+        <a href="reseau.html">Menu-selection</a>
+        <a href="exo.html">contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+
+<!-- GAUCHE : GMAIL -->
+<div class="hero-left">
+    <div class="gmail-card">
+        <div class="gmail-header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg">
+            <span>Gmail</span>
+        </div>
+
+        <p>Envoyez-moi un message !</p>
+
+        <a class="gmail-btn" 
+           href="https://mail.google.com/mail/?view=cm&fs=1&to=Ayanlahmohamed55@gmail.com" 
+           target="_blank">
+           Écrire un message
+        </a>
+    </div>
+</div>
+
+</section>
+
+</body>
+</html>
