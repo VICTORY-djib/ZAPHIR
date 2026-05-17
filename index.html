@@ -3,11 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Zaphir Restaurant</title>
 
 <style>
 
+/* ========================= */
 /* RESET */
+/* ========================= */
+
 *{
     margin:0;
     padding:0;
@@ -15,13 +19,19 @@
     font-family:"Segoe UI", Arial, sans-serif;
 }
 
-/* BODY */
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     background:#f4f6fb;
     overflow-x:hidden;
 }
 
+/* ========================= */
 /* HEADER */
+/* ========================= */
+
 header{
     position:fixed;
     top:15px;
@@ -51,7 +61,7 @@ nav a{
     text-decoration:none;
     font-weight:600;
     padding:10px 20px;
-    border-radius:25px;
+    border-radius:30px;
     transition:0.3s;
 }
 
@@ -65,44 +75,38 @@ nav .active{
     color:#2563eb;
 }
 
+/* ========================= */
 /* HERO */
+/* ========================= */
+
 .hero{
     width:100%;
-
-    /* PHOTO MOINS LONGUE */
-    height:75vh;
-
+    height:100vh;
     position:relative;
     overflow:hidden;
 }
 
-/* SLIDES */
 .slide{
     position:absolute;
     width:100%;
     height:100%;
     object-fit:cover;
-
-    /* PHOTO CLAIRE */
-    filter:brightness(1.15) contrast(1.05);
-
     opacity:0;
-    transition:opacity 1s ease-in-out;
+    transition:1s;
+    filter:brightness(0.7);
 }
 
 .slide.active{
     opacity:1;
 }
 
-/* OVERLAY */
 .overlay{
     position:absolute;
     inset:0;
-    background:rgba(0,0,0,0.25);
+    background:rgba(0,0,0,0.3);
     z-index:1;
 }
 
-/* HERO CONTENT */
 .hero-content{
     position:absolute;
     top:50%;
@@ -115,19 +119,18 @@ nav .active{
 }
 
 .hero-content h1{
-    font-size:70px;
-    margin-bottom:15px;
-    text-shadow:0 5px 15px rgba(0,0,0,0.5);
+    font-size:80px;
+    margin-bottom:20px;
+    text-shadow:0 5px 20px rgba(0,0,0,0.5);
 }
 
 .hero-content p{
-    font-size:22px;
-    margin-bottom:25px;
-    text-shadow:0 3px 10px rgba(0,0,0,0.5);
+    font-size:24px;
+    margin-bottom:30px;
 }
 
 .hero-content button{
-    padding:15px 35px;
+    padding:16px 40px;
     border:none;
     border-radius:40px;
     background:#2563eb;
@@ -138,11 +141,14 @@ nav .active{
 }
 
 .hero-content button:hover{
-    transform:translateY(-3px);
-    background:#1e40af;
+    background:#1d4ed8;
+    transform:translateY(-4px);
 }
 
+/* ========================= */
 /* BUTTONS */
+/* ========================= */
+
 .prev,
 .next{
     position:absolute;
@@ -173,103 +179,181 @@ nav .active{
     right:20px;
 }
 
-/* SECTION */
-.section{
-    padding:90px 20px;
+/* ========================= */
+/* ABOUT */
+/* ========================= */
+
+.about{
+    padding:100px 20px;
     text-align:center;
 }
 
-.section h2{
-    font-size:42px;
+.about h2{
+    font-size:55px;
     color:#1e3a8a;
-    margin-bottom:20px;
+    margin-bottom:25px;
 }
 
-.section p{
-    max-width:850px;
+.about p{
+    max-width:900px;
     margin:auto;
-    font-size:18px;
-    color:#444;
-    line-height:1.7;
+    color:#555;
+    font-size:20px;
+    line-height:1.8;
 }
 
-/* CARDS */
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:25px;
-    margin-top:50px;
+/* ========================= */
+/* MENU */
+/* ========================= */
+
+.menu-section{
+    padding:100px 20px;
+    background:#eef2ff;
 }
 
-.card{
+.menu-title{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.menu-title h2{
+    font-size:55px;
+    color:#1e3a8a;
+    margin-bottom:15px;
+}
+
+.menu-title p{
+    color:#555;
+    font-size:20px;
+}
+
+/* TABS */
+
+.tabs{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:60px;
+}
+
+.tab-btn{
+    border:none;
+    padding:15px 35px;
+    border-radius:40px;
     background:white;
-    border-radius:20px;
+    color:#1e3a8a;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.tab-btn:hover{
+    transform:translateY(-3px);
+}
+
+.tab-btn.active{
+    background:#2563eb;
+    color:white;
+}
+
+/* CONTENT */
+
+.menu-content{
+    display:none;
+    animation:fade 0.5s ease;
+}
+
+.menu-content.active{
+    display:block;
+}
+
+/* GRID */
+
+.menu-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+/* CARD */
+
+.menu-card{
+    background:white;
+    border-radius:25px;
     overflow:hidden;
-    box-shadow:0 8px 25px rgba(0,0,0,0.1);
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
     transition:0.3s;
 }
 
-.card:hover{
+.menu-card:hover{
     transform:translateY(-10px);
 }
 
-.card img{
+.menu-card img{
     width:100%;
     height:220px;
     object-fit:cover;
 }
 
-.card h3{
-    padding:15px;
+/* INFO */
+
+.menu-info{
+    padding:25px;
+    text-align:center;
+}
+
+.menu-info h3{
     color:#1e3a8a;
-    font-size:24px;
+    font-size:26px;
+    margin-bottom:15px;
 }
 
-.card p{
-    padding:0 15px 25px;
-    font-size:16px;
+.menu-info p{
+    color:#555;
+    line-height:1.7;
+    margin-bottom:20px;
 }
 
+.price{
+    display:inline-block;
+    background:#2563eb;
+    color:white;
+    padding:12px 25px;
+    border-radius:30px;
+    font-weight:bold;
+}
+
+/* ========================= */
 /* CONTACT */
+/* ========================= */
+
 .contact{
     background:white;
-    padding:80px 20px;
+    padding:100px 20px;
     text-align:center;
 }
 
 .contact h2{
-    font-size:42px;
+    font-size:50px;
     color:#1e3a8a;
-    margin-bottom:20px;
+    margin-bottom:25px;
 }
 
-.contact-container{
-    max-width:700px;
-    margin:auto;
-}
-
-.contact input,
-.contact textarea{
-    width:100%;
-    padding:16px;
-    margin:12px 0;
-    border:none;
-    border-radius:15px;
-    background:#eef2ff;
-    font-size:16px;
-}
-
-.contact textarea{
-    resize:none;
-    height:150px;
+.contact p{
+    font-size:20px;
+    color:#555;
+    margin-bottom:18px;
 }
 
 .contact button{
-    margin-top:15px;
+    margin-top:20px;
     padding:15px 35px;
     border:none;
-    border-radius:35px;
-    background:#2563eb;
+    border-radius:40px;
+    background:#25d366;
     color:white;
     font-size:18px;
     cursor:pointer;
@@ -277,22 +361,46 @@ nav .active{
 }
 
 .contact button:hover{
-    background:#1e40af;
+    transform:translateY(-3px);
 }
 
+/* ========================= */
 /* FOOTER */
+/* ========================= */
+
 footer{
     background:#1e3a8a;
     color:white;
     text-align:center;
-    padding:30px 20px;
+    padding:35px 20px;
 }
 
 footer p{
-    margin:8px 0;
+    margin:10px 0;
 }
 
+/* ========================= */
+/* ANIMATION */
+/* ========================= */
+
+@keyframes fade{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+/* ========================= */
 /* RESPONSIVE */
+/* ========================= */
+
 @media(max-width:768px){
 
     header{
@@ -309,12 +417,8 @@ footer p{
         padding:8px 12px;
     }
 
-    .hero{
-        height:60vh;
-    }
-
     .hero-content h1{
-        font-size:40px;
+        font-size:45px;
     }
 
     .hero-content p{
@@ -333,10 +437,21 @@ footer p{
         font-size:25px;
     }
 
-    .section h2,
+    .about h2,
+    .menu-title h2,
     .contact h2{
-        font-size:32px;
+        font-size:35px;
     }
+
+    .about p{
+        font-size:17px;
+    }
+
+    .tab-btn{
+        font-size:14px;
+        padding:12px 20px;
+    }
+
 }
 
 </style>
@@ -344,128 +459,673 @@ footer p{
 
 <body>
 
+<!-- ========================= -->
 <!-- HEADER -->
+<!-- ========================= -->
+
 <header>
 
 <nav>
-    <a class="active" href="#">Home-Zaphir</a>
-    <a href="#">Menu-Choix</a>
-    <a href="#">Menu-Selection</a>
+
+    <a class="active" href="#">
+        Home-Zaphir
+    </a>
+
+    <a href="#menu">
+        Menu-Choix
+    </a>
+
+    <a href="#contact">
+        Contact
+    </a>
+
 </nav>
 
 </header>
 
+<!-- ========================= -->
 <!-- HERO -->
+<!-- ========================= -->
+
 <section class="hero">
 
-    <!-- PHOTOS -->
     <img src="zaphir1.jpeg" class="slide active">
     <img src="zaphir2.jpeg" class="slide">
     <img src="zaphir3.jpeg" class="slide">
     <img src="zaphir4.jpeg" class="slide">
 
-    <!-- OVERLAY -->
     <div class="overlay"></div>
 
-    <!-- CONTENT -->
     <div class="hero-content">
 
-        <h1>Bienvenue Chez Zaphir</h1>
+        <h1>
+            Bienvenue Chez Zaphir
+        </h1>
 
         <p>
-            Best Delicious Food
+            Best Delicious Food & Drinks
         </p>
 
         <button>
-            Nourriture Naturel
+            Nourriture Naturelle
         </button>
 
     </div>
 
-    <!-- BUTTONS -->
     <button class="prev">&#10094;</button>
     <button class="next">&#10095;</button>
 
 </section>
 
-<!-- SECTION -->
-<section class="section">
+<!-- ========================= -->
+<!-- ABOUT -->
+<!-- ========================= -->
 
-    <h2>Nos Meilleurs Plats</h2>
+<section class="about">
+
+    <h2>
+        Nos Meilleurs Menus
+    </h2>
 
     <p>
-        Découvrez les meilleurs plats délicieux préparés avec passion.
-        Qualité, saveur et service moderne pour une expérience unique.
+        Découvrez les spécialités du restaurant Zaphir.
+        Des plats délicieux, boissons fraîches et cafés
+        préparés avec passion pour une expérience moderne.
     </p>
 
-    <div class="cards">
+</section>
 
-        <div class="card">
+<!-- ========================= -->
+<!-- MENU COMPLET ZAPHIR -->
+<!-- ========================= -->
 
-            <img src="zaphir2.jpeg">
+<!-- VIENNOISERIE -->
+<div class="menu-content active" id="viennoiserie">
+    <div class="menu-grid">
 
-            <h3>Spaghetti Spécial Zaphir</h3>
-
-            <p>
-                Délicieux Viande au poulet.
-            </p>
-
+        <div class="menu-card">
+            <img src="vien1.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Pain au Chocolat</h3>
+                <p>Viennoiserie chaude et croustillante</p>
+                <span class="price">230 FDJ</span>
+            </div>
         </div>
 
-        <div class="card">
-
-            <img src="zaphir3.jpeg">
-
-            <h3>chaudrée de poisson </h3>
-
-            <p>
-                chaudrée de poisson (ou seafood chowder), une spécialité du restaurant Zaphir.
-            </p>
-
+        <div class="menu-card">
+            <img src="vien2.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Croissant</h3>
+                <p>Croissant traditionnel au beurre</p>
+                <span class="price">200 FDJ</span>
+            </div>
         </div>
 
-        <div class="card">
+        <div class="menu-card">
+            <img src="vien3.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Croissant Amande</h3>
+                <p>Croissant avec crème d’amande</p>
+                <span class="price">250 FDJ</span>
+            </div>
+        </div>
 
-            <img src="zaphir4.jpeg">
+        <div class="menu-card">
+            <img src="vien4.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Pain au Raisin</h3>
+                <p>Pain sucré aux raisins</p>
+                <span class="price">280 FDJ</span>
+            </div>
+        </div>
 
-            <h3>Aftour mis en place</h3>
+        <div class="menu-card new">
+            <img src="vien5.jpeg" alt="">
+            <div class="menu-info">
+                <span class="badge">NEW</span>
+                <h3>Croissant Ambabour</h3>
+                <p>Épices d’ambabour + crème onctueuse</p>
+                <span class="price">300 FDJ</span>
+            </div>
+        </div>
 
-            <p>
-                spéciale Zaphir.
-            </p>
+        <div class="menu-card">
+            <img src="vien6.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Croissant Fruit Rouge</h3>
+                <p>Garniture aux fruits rouges</p>
+                <span class="price">250 FDJ</span>
+            </div>
+        </div>
 
+        <div class="menu-card">
+            <img src="vien7.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Pain Suisse</h3>
+                <p>Chocolat et crème pâtissière</p>
+                <span class="price">280 FDJ</span>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <img src="vien9.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Brioche</h3>
+                <p>Brioche moelleuse et légèrement sucrée</p>
+                <span class="price">250 FDJ</span>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <img src="vien8.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Assiette de Fruits</h3>
+                <p>Fruits frais naturels</p>
+                <span class="price">800 FDJ</span>
+            </div>
         </div>
 
     </div>
+</div>
 
-</section>
+<!-- CAFÉ -->
+<div class="menu-content" id="cafe">
+    <div class="menu-grid">
+
+        <div class="menu-card">
+            <img src="cafe1.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Espresso</h3>
+                <p>Café intense</p>
+                <span class="price">400 FDJ</span>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <img src="cafe2.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Americano</h3>
+                <p>Café allongé</p>
+                <span class="price">500 FDJ</span>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <img src="cafe3.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Café Latte</h3>
+                <p>Café + lait chaud</p>
+                <span class="price">600 FDJ</span>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <img src="cafe4.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Cappuccino</h3>
+                <p>Mousse de lait crémeuse</p>
+                <span class="price">700 FDJ</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- BOISSONS FROIDES -->
+<div class="menu-content" id="boissons">
+    <div class="menu-grid">
+
+        <div class="menu-card">
+            <img src="drink1.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Ice Coffee Latte</h3>
+                <p>Café glacé</p>
+                <span class="price">600 FDJ</span>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <img src="drink2.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Ice Mocha Latte</h3>
+                <p>Chocolat + café glacé</p>
+                <span class="price">800 FDJ</span>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <img src="drink3.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Ice Americano</h3>
+                <p>Café glacé fort</p>
+                <span class="price">800 FDJ</span>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <img src="drink5.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Smoothie Fraise Banane</h3>
+                <p>Frais et naturel</p>
+                <span class="price">700 FDJ</span>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <img src="drink6.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Smoothie Chocolat Banane</h3>
+                <p>Gourmand</p>
+                <span class="price">600 FDJ</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- MOJITO & THÉ -->
+<div class="menu-content" id="mojito">
+    <div class="menu-grid">
+
+        <div class="menu-card">
+            <img src="mojito1.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Mojito Fraise</h3>
+                <p>Menthe + fraise</p>
+                <span class="price">800 FDJ</span>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <img src="mojito2.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Menthe Citron</h3>
+                <p>Boisson fraîche</p>
+                <span class="price">250 FDJ</span>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <img src="mojito3.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Thé Glacé Pêche</h3>
+                <p>Rafraîchissant</p>
+                <span class="price">500 FDJ</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- PLATS -->
+<div class="menu-content" id="plats">
+    <div class="menu-grid">
+
+        <div class="menu-card">
+            <img src="plat1.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Filet de Boeuf</h3>
+                <p>Riz, frites, légumes</p>
+                <span class="price">2300 FDJ</span>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <img src="plat2.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Filet de Dorade</h3>
+                <p>Poisson grillé</p>
+                <span class="price">2200 FDJ</span>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <img src="plat4.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Burger Zaphir</h3>
+                <p>+ boisson gazeuse</p>
+                <span class="price">1800 FDJ</span>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <img src="plat5.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Wrap Viande</h3>
+                <p>+ frites</p>
+                <span class="price">1500 FDJ</span>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <img src="plat6.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Bibimbap Boeuf</h3>
+                <p>Plat coréen</p>
+                <span class="price">2300 FDJ</span>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <img src="plat9.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Penne Alfredo</h3>
+                <p>Pâtes crémeuses</p>
+                <span class="price">2300 FDJ</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- PETIT DÉJEUNER -->
+<div class="menu-content" id="breakfast">
+    <div class="menu-grid">
+
+        <div class="menu-card">
+            <img src="break1.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Oeuf Fromage</h3>
+                <p>Avec pain maison</p>
+                <span class="price">500 FDJ</span>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <img src="break3.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Foul</h3>
+                <p>Haricots chauds</p>
+                <span class="price">500 FDJ</span>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <img src="break4.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Foie</h3>
+                <p>Avec galette</p>
+                <span class="price">900 FDJ</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- SODAS -->
+<div class="menu-content" id="sodas">
+    <div class="menu-grid">
+
+        <div class="menu-card">
+            <img src="soda3.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Coca-Cola</h3>
+                <p>Boisson gazeuse</p>
+                <span class="price">100 FDJ</span>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <img src="soda4.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Fanta</h3>
+                <p>Orange pétillante</p>
+                <span class="price">100 FDJ</span>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <img src="soda5.jpeg" alt="">
+            <div class="menu-info">
+                <h3>Sprite</h3>
+                <p>Citron frais</p>
+                <span class="price">100 FDJ</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ========================= -->
 <!-- CONTACT -->
-<section class="contact">
+<!-- ========================= -->
+<!-- ========================= -->
 
-    <h2>Contactez-nous</h2>
+<!-- AJOUTER AVANT CONTACT -->
 
-    <div class="contact-container">
+<!-- SECTION CHEF -->
 
-        <p style="margin-bottom:15px;font-size:18px;color:#444;">
-            📍 Adresse : Gabod Aviation, Rond-point Balaine
-        </p>
+<!-- ========================= -->
 
-        <p style="margin-bottom:25px;font-size:18px;color:#444;">
-            📞 WhatsApp : +253 77118830
-        </p>
+<section class="about">
 
-        <!-- BOUTON WHATSAPP -->
-        <a href="https://wa.me/25377118830" target="_blank">
-            <button>
-                💬 Écrire sur WhatsApp
-            </button>
-        </a>
+    <h2>
 
-    </div>
+        Notre Chef
+
+    </h2>
+
+    <p>
+
+        Notre chef prépare chaque plat avec passion,
+
+        ingrédients frais et qualité premium pour offrir
+
+        une expérience gastronomique exceptionnelle.
+
+    </p>
 
 </section>
 
+<!-- ========================= -->
+
+<!-- AJOUTER AVANT FOOTER -->
+
+<!-- HORAIRES -->
+
+<!-- ========================= -->
+
+<section class="about">
+
+    <h2>
+
+        Horaires d’Ouverture
+
+    </h2>
+
+    <p>
+
+        🕘 Lundi - Jeudi : 08h00 - 23h00 <br><br>
+
+        🕘 Vendredi : 14h00 - 00h00 <br><br>
+
+        🕘 Samedi - Dimanche : 08h00 - 00h00
+
+    </p>
+
+</section>
+
+<!-- ========================= -->
+
+<!-- REMPLACER FOOTER -->
+
+<!-- ========================= -->
+
+<footer>
+
+    <p>
+
+        © 2026 Zaphir Restaurant
+
+    </p>
+
+    <p>
+
+        Tous droits réservés
+
+    </p>
+
+    <br>
+
+    <p>
+
+        📍 Gabod Aviation, Rond-point Balaine
+
+    </p>
+
+    <p>
+
+        📞 +253 77118830
+
+    </p>
+
+    <p>
+
+        ✉️ contact.restaurantzaphir@gmail.com
+
+    </p>
+
+</footer>
+
+<!-- ========================= -->
+
+<!-- AJOUTER DANS CSS -->
+
+<!-- ========================= -->
+
+<style>
+
+/* IMAGE MENU */
+
+.menu-card img{
+
+    transition:0.4s;
+
+}
+
+.menu-card:hover img{
+
+    transform:scale(1.08);
+
+}
+
+/* PREMIUM */
+
+.menu-card{
+
+    position:relative;
+
+}
+
+.menu-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-100%;
+
+    width:100%;
+
+    height:100%;
+
+    background:rgba(255,255,255,0.15);
+
+    transition:0.5s;
+
+    z-index:2;
+
+}
+
+.menu-card:hover::before{
+
+    left:100%;
+
+}
+
+/* CONTACT */
+
+.contact{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.contact::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:300px;
+
+    height:300px;
+
+    background:#2563eb;
+
+    border-radius:50%;
+
+    top:-120px;
+
+    right:-120px;
+
+    opacity:0.08;
+
+}
+
+.contact::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:250px;
+
+    height:250px;
+
+    background:#1e3a8a;
+
+    border-radius:50%;
+
+    bottom:-100px;
+
+    left:-100px;
+
+    opacity:0.08;
+
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#2563eb;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#eef2ff;
+
+}
+
+
+<!-- ========================= -->
 <!-- FOOTER -->
+<!-- ========================= -->
+
 <footer>
 
     <p>
@@ -478,33 +1138,46 @@ footer p{
 
 </footer>
 
+<!-- ========================= -->
+<!-- SCRIPT -->
+<!-- ========================= -->
+
 <script>
 
+/* ========================= */
 /* SLIDER */
+/* ========================= */
 
 const slides = document.querySelectorAll(".slide");
+
 const nextBtn = document.querySelector(".next");
+
 const prevBtn = document.querySelector(".prev");
 
 let index = 0;
 
-/* SHOW */
 function showSlide(i){
 
     slides.forEach(slide =>{
+
         slide.classList.remove("active");
+
     });
 
     slides[i].classList.add("active");
+
 }
 
 /* NEXT */
+
 nextBtn.addEventListener("click", ()=>{
 
     index++;
 
     if(index >= slides.length){
+
         index = 0;
+
     }
 
     showSlide(index);
@@ -512,30 +1185,71 @@ nextBtn.addEventListener("click", ()=>{
 });
 
 /* PREV */
+
 prevBtn.addEventListener("click", ()=>{
 
     index--;
 
     if(index < 0){
+
         index = slides.length - 1;
+
     }
 
     showSlide(index);
 
 });
 
-/* AUTO SLIDE */
+/* AUTO */
+
 setInterval(()=>{
 
     index++;
 
     if(index >= slides.length){
+
         index = 0;
+
     }
 
     showSlide(index);
 
 }, 4000);
+
+/* ========================= */
+/* MENU TABS */
+/* ========================= */
+
+const tabBtns = document.querySelectorAll(".tab-btn");
+
+const menuContents = document.querySelectorAll(".menu-content");
+
+tabBtns.forEach(btn =>{
+
+    btn.addEventListener("click", ()=>{
+
+        tabBtns.forEach(b =>{
+
+            b.classList.remove("active");
+
+        });
+
+        menuContents.forEach(content =>{
+
+            content.classList.remove("active");
+
+        });
+
+        btn.classList.add("active");
+
+        const target = btn.getAttribute("data-tab");
+
+        document.getElementById(target)
+        .classList.add("active");
+
+    });
+
+});
 
 </script>
 
