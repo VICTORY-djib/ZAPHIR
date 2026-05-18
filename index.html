@@ -26,13 +26,197 @@
 
 }
 
-body{
+html{scroll-behavior:smooth;}
 
-    background:#f4f6fb;
+body{background:#f4f6fb; overflow-x:hidden;}
+
+/* HEADER */
+
+header{
+
+    position:fixed;
+
+    top:15px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:92%;
+
+    max-width:1200px;
+
+    padding:14px 25px;
+
+    border-radius:50px;
+
+    background:rgba(255,255,255,0.15);
+
+    backdrop-filter:blur(12px);
+
+    z-index:1000;
 
 }
 
-/* MENU CARD */
+nav{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+nav a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    padding:10px 20px;
+
+    border-radius:30px;
+
+}
+
+nav a:hover, nav .active{
+
+    background:white;
+
+    color:#2563eb;
+
+}
+
+/* HERO */
+
+.hero{
+
+    width:100%;
+
+    height:65vh;
+
+    position:relative;
+
+}
+
+.slide{
+
+    position:absolute;
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    opacity:0;
+
+    transition:1s;
+
+}
+
+.slide.active{opacity:1;}
+
+.overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(0,0,0,0.4);
+
+}
+
+.hero-content{
+
+    position:absolute;
+
+    top:50%;
+
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    text-align:center;
+
+    color:white;
+
+}
+
+.hero-content h1{font-size:60px;}
+
+.hero-content button{
+
+    padding:15px 30px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+/* MENU */
+
+.menu-section{padding:80px 20px;}
+
+.tabs{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:30px;
+
+}
+
+.tab-btn{
+
+    padding:10px 20px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:white;
+
+    cursor:pointer;
+
+}
+
+.tab-btn.active{
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+.menu-content{display:none;}
+
+.menu-content.active{display:block;}
+
+.menu-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:20px;
+
+}
 
 .menu-card{
 
@@ -44,11 +228,9 @@ body{
 
     cursor:pointer;
 
-    transition:0.3s;
+    transition:0.2s;
 
     position:relative;
-
-    margin:10px;
 
 }
 
@@ -62,13 +244,7 @@ body{
 
 }
 
-.menu-info{
-
-    padding:10px;
-
-    text-align:center;
-
-}
+.menu-info{padding:15px;text-align:center;}
 
 .price{
 
@@ -86,7 +262,7 @@ body{
 
 }
 
-/* SELECTION */
+/* ✅ SELECTION */
 
 .menu-card.selected{
 
@@ -94,77 +270,47 @@ body{
 
     transform:scale(1.03);
 
-}
-
-/* PANIER */
-
-#cartBox{
-
-    position:fixed;
-
-    right:15px;
-
-    bottom:15px;
-
-    width:320px;
-
-    background:white;
-
-    padding:15px;
-
-    border-radius:15px;
-
-    box-shadow:0 10px 25px rgba(0,0,0,0.2);
-
-    z-index:9999;
+    box-shadow:0 10px 20px rgba(0,0,0,0.2);
 
 }
 
-#cartItems{
+.menu-card.selected::after{
 
-    max-height:200px;
+    content:"✔";
 
-    overflow:auto;
+    position:absolute;
 
-    margin:10px 0;
+    top:10px;
 
-}
-
-.cart-item{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:8px;
-
-    font-size:14px;
-
-}
-
-.qty-btn{
-
-    padding:4px 8px;
-
-    border:none;
+    right:10px;
 
     background:#2563eb;
 
     color:white;
 
-    border-radius:5px;
+    width:25px;
 
-    cursor:pointer;
+    height:25px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
 
 }
 
-#cartBox button{
+/* BUTTON */
 
-    width:100%;
+.order-btn{
 
-    padding:10px;
+    display:block;
+
+    margin:40px auto 0;
+
+    padding:15px 30px;
 
     background:#25d366;
 
@@ -172,25 +318,21 @@ body{
 
     border:none;
 
-    border-radius:10px;
+    border-radius:30px;
 
-    margin-top:10px;
+    font-size:16px;
 
     cursor:pointer;
 
 }
 
-#tableNumber, #orderType{
+/* CONTACT */
 
-    width:100%;
+.contact{
 
-    margin-top:5px;
+    text-align:center;
 
-    padding:8px;
-
-    border-radius:8px;
-
-    border:1px solid #ccc;
+    padding:60px 20px;
 
 }
 
