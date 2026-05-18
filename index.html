@@ -66,6 +66,8 @@ nav{
 
     gap:20px;
 
+    flex-wrap:wrap;
+
 }
 
 nav a{
@@ -146,7 +148,7 @@ nav a:hover, nav .active{
 
 }
 
-.hero-content h1{font-size:50px;}
+.hero-content h1{font-size:60px;}
 
 .hero-content button{
 
@@ -159,8 +161,6 @@ nav a:hover, nav .active{
     background:#2563eb;
 
     color:white;
-
-    cursor:pointer;
 
 }
 
@@ -226,11 +226,11 @@ nav a:hover, nav .active{
 
     overflow:hidden;
 
-    padding:10px;
+    cursor:pointer;
+
+    transition:0.2s;
 
     position:relative;
-
-    text-align:center;
 
 }
 
@@ -243,6 +243,8 @@ nav a:hover, nav .active{
     object-fit:cover;
 
 }
+
+.menu-info{padding:15px;text-align:center;}
 
 .price{
 
@@ -260,45 +262,43 @@ nav a:hover, nav .active{
 
 }
 
-/* SELECTED */
+/* ✅ SELECTION */
 
 .menu-card.selected{
 
     border:3px solid #2563eb;
 
-}
+    transform:scale(1.03);
 
-/* QTY */
-
-.qty-box{
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:10px;
-
-    margin-top:10px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.2);
 
 }
 
-.qty-box button{
+.menu-card.selected::after{
 
-    width:30px;
+    content:"✔";
 
-    height:30px;
+    position:absolute;
 
-    border:none;
+    top:10px;
 
-    border-radius:50%;
+    right:10px;
 
     background:#2563eb;
 
     color:white;
 
-    cursor:pointer;
+    width:25px;
+
+    height:25px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
 
 }
 
@@ -308,7 +308,7 @@ nav a:hover, nav .active{
 
     display:block;
 
-    margin:40px auto;
+    margin:40px auto 0;
 
     padding:15px 30px;
 
@@ -320,51 +320,19 @@ nav a:hover, nav .active{
 
     border-radius:30px;
 
+    font-size:16px;
+
     cursor:pointer;
 
 }
 
-/* POPUP */
+/* CONTACT */
 
-.popup{
-
-    display:none;
-
-    position:fixed;
-
-    inset:0;
-
-    background:rgba(0,0,0,0.6);
-
-    justify-content:center;
-
-    align-items:center;
-
-    z-index:2000;
-
-}
-
-.popup-box{
-
-    background:white;
-
-    padding:20px;
-
-    border-radius:15px;
-
-    width:300px;
+.contact{
 
     text-align:center;
 
-}
-
-.popup-box select{
-
-    width:100%;
-
-    margin:10px 0;
-
-    padding:10px;
+    padding:60px 20px;
 
 }
 
@@ -373,7 +341,7 @@ nav a:hover, nav .active{
 </head>
 
 <body>
-    
+
 <header>
 
 <nav>
@@ -886,13 +854,15 @@ nav a:hover, nav .active{
 
 </section>
 
-<!-- BUTTON -->
+<!-- BUTTON WHATSAPP -->
 
 <button class="order-btn" onclick="openPopup()">
 
 📌 Envoyer commande
 
 </button>
+
+</section>
 
 <!-- POPUP -->
 
@@ -938,93 +908,117 @@ document.write(`<option value="T${i}">T${i}</option>`);
 
 let cart = {};
 
-/* PANIER */
+/* ===================== */
+
+/* QUANTITE + SELECTION */
+
+/* ===================== */
 
 document.querySelectorAll(".menu-card").forEach(card=>{
 
-    const name = card.querySelector("h3").innerText;
+let name = card.querySelector("h3").innerText;
 
-    const price = parseInt(card.querySelector(".price").innerText);
+let price = parseInt(card.querySelector(".price").innerText);
 
-    let qty = 0;
+let qty = 0;
 
-    const box = document.createElement("div");
+let box = document.createElement("div");
 
-    box.className = "qty-box";
+box.className="qty-box";
 
-    box.innerHTML = `<button>-</button><span>0</span><button>+</button>`;
+box.innerHTML=`
 
-    card.appendChild(box);
+<button class="minus">-</button>
 
-    const span = box.querySelector("span");
+<span>0</span>
 
-    box.children[0].onclick = () => {
+<button class="plus">+</button>
 
-        if(qty>0) qty--;
+`;
 
-        update();
+card.appendChild(box);
 
-    };
+let span = box.querySelector("span");
 
-    box.children[1].onclick = () => {
+box.querySelector(".plus").onclick=(e)=>{
 
-        qty++;
+e.stopPropagation();
 
-        update();
+qty++;
 
-    };
+update();
 
-    function update(){
+};
 
-        span.innerText = qty;
+box.querySelector(".minus").onclick=(e)=>{
 
-        if(qty>0){
+e.stopPropagation();
 
-            cart[name] = {qty, price};
+if(qty>0) qty--;
 
-            card.classList.add("selected");
+update();
 
-        }else{
+};
 
-            delete cart[name];
+function update(){
 
-            card.classList.remove("selected");
+span.innerText = qty;
 
-        }
+if(qty>0){
 
-    }
+cart[name]={qty,price};
+
+card.classList.add("selected");
+
+}else{
+
+delete cart[name];
+
+card.classList.remove("selected");
+
+}
+
+}
 
 });
 
+/* ===================== */
+
 /* POPUP */
+
+/* ===================== */
 
 function openPopup(){
 
-    if(Object.keys(cart).length===0){
+if(Object.keys(cart).length===0){
 
-        alert("Aucun article sélectionné");
+alert("Aucun article sélectionné");
 
-        return;
+return;
 
-    }
+}
 
-    document.getElementById("popup").style.display="flex";
+document.getElementById("popup").style.display="flex";
 
 }
 
 function closePopup(){
 
-    document.getElementById("popup").style.display="none";
+document.getElementById("popup").style.display="none";
 
 }
 
-/* WHATSAPP */
+/* ===================== */
+
+/* WHATSAPP + CHEF */
+
+/* ===================== */
 
 function send(){
 
-const type = document.getElementById("type").value;
+let type = document.getElementById("type").value;
 
-const table = document.getElementById("table").value;
+let table = document.getElementById("table").value;
 
 if(type==="Sur place" && !table){
 
@@ -1034,13 +1028,13 @@ return;
 
 }
 
+let msg="🍽️ ZAPHIR RESTAURANT%0A%0A";
+
+msg+="📌 "+type+"%0A";
+
+if(table) msg+="🪑 "+table+"%0A%0A";
+
 let total=0;
-
-let msg="🍽️ ZAPHIR RESTAURANT\n\n";
-
-msg+="Type: "+type+"\n";
-
-if(table) msg+="Table: "+table+"\n\n";
 
 let i=1;
 
@@ -1052,15 +1046,39 @@ let sub=item.qty*item.price;
 
 total+=sub;
 
-msg+=`${i}. ${n} x${item.qty} = ${sub} FDJ\n`;
+msg+=`${i}. ${n} x${item.qty} = ${sub} FDJ%0A`;
 
 i++;
 
 }
 
-msg+="\nTOTAL: "+total+" FDJ";
+msg+="%0A💰 TOTAL: "+total+" FDJ";
 
-window.open("https://wa.me/25377118830?text="+encodeURIComponent(msg),"_blank");
+window.open("https://wa.me/25377118830?text="+msg,"_blank");
+
+/* CHEF */
+
+let chef="👨‍🍳 NOUVELLE COMMANDE%0A%0A";
+
+chef+=type+"%0A";
+
+if(table) chef+=table+"%0A%0A";
+
+for(let n in cart){
+
+let item=cart[n];
+
+chef+=`- ${n} x${item.qty}%0A`;
+
+}
+
+chef+="%0ATOTAL: "+total+" FDJ";
+
+setTimeout(()=>{
+
+window.open("https://wa.me/25377118830?text="+chef,"_blank");
+
+},1500);
 
 }
 
@@ -1068,4 +1086,284 @@ window.open("https://wa.me/25377118830?text="+encodeURIComponent(msg),"_blank");
 
 </body>
 
+</html><button class="order-btn" onclick="openPopup()">
+
+📌 Envoyer commande
+
+</button>
+
+</section>
+
+<!-- POPUP -->
+
+<div class="popup" id="popup">
+
+<div class="popup-box">
+
+<h3>Finaliser commande</h3>
+
+<select id="type">
+
+<option value="Commande">Commande</option>
+
+<option value="Sur place">Sur place</option>
+
+</select>
+
+<select id="table">
+
+<option value="">Choisir table</option>
+
+<script>
+
+for(let i=1;i<=20;i++){
+
+document.write(`<option value="T${i}">T${i}</option>`);
+
+}
+
+</script>
+
+</select>
+
+<button class="order-btn" onclick="send()">Envoyer WhatsApp</button>
+
+<button onclick="closePopup()">Annuler</button>
+
+</div>
+
+</div>
+
+<script>
+
+let cart = {};
+
+/* ===================== */
+
+/* QUANTITE + SELECTION */
+
+/* ===================== */
+
+document.querySelectorAll(".menu-card").forEach(card=>{
+
+let name = card.querySelector("h3").innerText;
+
+let price = parseInt(card.querySelector(".price").innerText);
+
+let qty = 0;
+
+let box = document.createElement("div");
+
+box.className="qty-box";
+
+box.innerHTML=`
+
+<button class="minus">-</button>
+
+<span>0</span>
+
+<button class="plus">+</button>
+
+`;
+
+card.appendChild(box);
+
+let span = box.querySelector("span");
+
+box.querySelector(".plus").onclick=(e)=>{
+
+e.stopPropagation();
+
+qty++;
+
+update();
+
+};
+
+box.querySelector(".minus").onclick=(e)=>{
+
+e.stopPropagation();
+
+if(qty>0) qty--;
+
+update();
+
+};
+
+function update(){
+
+span.innerText = qty;
+
+if(qty>0){
+
+cart[name]={qty,price};
+
+card.classList.add("selected");
+
+}else{
+
+delete cart[name];
+
+card.classList.remove("selected");
+
+}
+
+}
+
+});
+
+/* ===================== */
+
+/* POPUP */
+
+/* ===================== */
+
+function openPopup(){
+
+if(Object.keys(cart).length===0){
+
+alert("Aucun article sélectionné");
+
+return;
+
+}
+
+document.getElementById("popup").style.display="flex";
+
+}
+
+function closePopup(){
+
+document.getElementById("popup").style.display="none";
+
+}
+
+/* ===================== */
+
+/* WHATSAPP + CHEF */
+
+/* ===================== */
+
+function send(){
+
+let type = document.getElementById("type").value;
+
+let table = document.getElementById("table").value;
+
+if(type==="Sur place" && !table){
+
+alert("Choisir une table");
+
+return;
+
+}
+
+let msg="🍽️ ZAPHIR RESTAURANT%0A%0A";
+
+msg+="📌 "+type+"%0A";
+
+if(table) msg+="🪑 "+table+"%0A%0A";
+
+let total=0;
+
+let i=1;
+
+for(let n in cart){
+
+let item=cart[n];
+
+let sub=item.qty*item.price;
+
+total+=sub;
+
+msg+=`${i}. ${n} x${item.qty} = ${sub} FDJ%0A`;
+
+i++;
+
+}
+
+msg+="%0A💰 TOTAL: "+total+" FDJ";
+
+window.open("https://wa.me/25377118830?text="+msg,"_blank");
+
+/* CHEF */
+
+let chef="👨‍🍳 NOUVELLE COMMANDE%0A%0A";
+
+chef+=type+"%0A";
+
+if(table) chef+=table+"%0A%0A";
+
+for(let n in cart){
+
+let item=cart[n];
+
+chef+=`- ${n} x${item.qty}%0A`;
+
+}
+
+chef+="%0ATOTAL: "+total+" FDJ";
+
+setTimeout(()=>{
+
+window.open("https://wa.me/25377118830?text="+chef,"_blank");
+
+},1500);
+
+}
+
+</script>
+
+</body>
+
+</html>
+<!-- FOOTER -->
+<footer>
+<p>©️ 2026 Zaphir Restaurant</p>
+</footer>
+
+<!-- SCRIPT -->
+<script>
+
+// SLIDER
+const slides = document.querySelectorAll(".slide");
+let index = 0;
+
+function show(i){
+slides.forEach(s=>s.classList.remove("active"));
+slides[i].classList.add("active");
+}
+
+document.querySelector(".next").onclick = ()=>{
+index = (index+1)%slides.length;
+show(index);
+};
+
+document.querySelector(".prev").onclick = ()=>{
+index = (index-1+slides.length)%slides.length;
+show(index);
+};
+
+setInterval(()=>{
+index = (index+1)%slides.length;
+show(index);
+},4000);
+
+// TABS
+const tabs = document.querySelectorAll(".tab-btn");
+const contents = document.querySelectorAll(".menu-content");
+
+tabs.forEach(t=>{
+t.onclick=()=>{
+tabs.forEach(x=>x.classList.remove("active"));
+contents.forEach(c=>c.classList.remove("active"));
+
+t.classList.add("active");
+document.getElementById(t.dataset.tab).classList.add("active");
+}
+});
+
+</script>
+
+</body>
 </html>
