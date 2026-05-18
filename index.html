@@ -197,25 +197,47 @@ footer{
     padding:30px;
 }
 
-  /* =========================
+/* =========================
 PANIER
 ========================= */
 #cartBox{
 position:fixed;
-right:15px;
-bottom:15px;
-width:280px;
+right:-350px;
+bottom:20px;
+width:330px;
+max-height:85vh;
+overflow-y:auto;
 background:white;
-padding:15px;
-border-radius:15px;
-box-shadow:0 0 10px rgba(0,0,0,0.2);
+padding:20px;
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,0,0,0.25);
 z-index:9999;
+transition:0.5s;
+border:3px solid #2563eb;
 }
 
+/* PANIER OUVERT */
+#cartBox.show{
+right:20px;
+}
+
+/* BOUTONS */
 #cartBox button{
 margin-top:5px;
-padding:5px 10px;
+padding:8px 12px;
 cursor:pointer;
+border:none;
+border-radius:10px;
+}
+
+/* SCROLL */
+#cartBox::-webkit-scrollbar{
+width:5px;
+}
+
+#cartBox::-webkit-scrollbar-thumb{
+background:#2563eb;
+border-radius:10px;
 }
 </style>
 </head>
@@ -839,14 +861,22 @@ cart.push({name,price,qty:1});
 }
 
 updateCart();
+openCart();
 };
 });
 
-// UPDATE PANIER
-function updateCart(){
+// OUVRIR PANIER
+function openCart(){
 
-let box = document.getElementById("cartItems");
-box.innerHTML = "";
+let cartBox = document.getElementById("cartBox");
+
+cartBox.classList.add("show");
+
+setTimeout(()=>{
+cartBox.classList.remove("show");
+},4000);
+
+}
 
 let total = 0;
 
