@@ -16,15 +16,17 @@
 
 *{
 
-margin:0;
+    margin:0;
 
-padding:0;
+    padding:0;
 
-box-sizing:border-box;
+    box-sizing:border-box;
 
-font-family:"Segoe UI", Arial, sans-serif;
+    font-family:"Segoe UI", Arial, sans-serif;
 
 }
+
+html{scroll-behavior:smooth;}
 
 body{background:#f4f6fb; overflow-x:hidden;}
 
@@ -32,193 +34,453 @@ body{background:#f4f6fb; overflow-x:hidden;}
 
 header{
 
-position:fixed;
+    position:fixed;
 
-top:15px;
+    top:15px;
 
-left:50%;
+    left:50%;
 
-transform:translateX(-50%);
+    transform:translateX(-50%);
 
-width:92%;
+    width:92%;
 
-padding:14px 25px;
+    max-width:1200px;
 
-border-radius:50px;
+    padding:14px 25px;
 
-background:rgba(0,0,0,0.4);
+    border-radius:50px;
 
-z-index:1000;
+    background:rgba(255,255,255,0.15);
+
+    backdrop-filter:blur(12px);
+
+    z-index:1000;
 
 }
 
 nav{
 
-display:flex;
+    display:flex;
 
-justify-content:center;
+    justify-content:center;
 
-gap:20px;
+    gap:20px;
+
+    flex-wrap:wrap;
 
 }
 
 nav a{
 
-color:white;
+    color:white;
 
-text-decoration:none;
+    text-decoration:none;
 
-font-weight:bold;
+    font-weight:600;
 
-}
+    padding:10px 20px;
 
-/* MENU CARD */
-
-.menu-card{
-
-background:white;
-
-border-radius:20px;
-
-overflow:hidden;
-
-cursor:pointer;
-
-transition:0.3s;
-
-border:2px solid transparent;
+    border-radius:30px;
 
 }
 
-.menu-card.selected{
+nav a:hover, nav .active{
 
-border:2px solid #2563eb;
+    background:white;
 
-transform:scale(1.03);
+    color:#2563eb;
 
 }
+
+/* HERO */
+
+.hero{
+
+    width:100%;
+
+    height:65vh;
+
+    position:relative;
+
+}
+
+.slide{
+
+    position:absolute;
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    opacity:0;
+
+    transition:1s;
+
+}
+
+.slide.active{opacity:1;}
+
+.overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(0,0,0,0.4);
+
+}
+
+.hero-content{
+
+    position:absolute;
+
+    top:50%;
+
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    text-align:center;
+
+    color:white;
+
+}
+
+.hero-content h1{font-size:70px;}
+
+.hero-content p{font-size:22px;}
+
+.hero-content button{
+
+    padding:15px 35px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:#2563eb;
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+/* SLIDER BUTTONS */
+
+.prev,.next{
+
+    position:absolute;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:50px;
+
+    height:50px;
+
+    border-radius:50%;
+
+    border:none;
+
+    background:rgba(255,255,255,0.3);
+
+    color:white;
+
+    font-size:30px;
+
+    cursor:pointer;
+
+}
+
+.prev{left:20px;}
+
+.next{right:20px;}
+
+/* SECTIONS */
+
+.about, .contact{
+
+    padding:80px 20px;
+
+    text-align:center;
+
+}
+
+.about h2, .contact h2{
+
+    font-size:40px;
+
+    color:#1e3a8a;
+
+    margin-bottom:20px;
+
+}
+
+/* MENU */
+
+.menu-section{
+
+    padding:80px 20px;
+
+}
+
+.tabs{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:40px;
+
+}
+
+.tab-btn{
+
+    padding:12px 25px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:white;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+}
+
+.tab-btn.active{
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+.menu-content{display:none;}
+
+.menu-content.active{display:block;}
 
 .menu-grid{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 
-gap:15px;
+    gap:20px;
+
+}
+
+.menu-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    padding-bottom:10px;
+
+}
+
+.menu-card img{
+
+    width:100%;
+
+    height:200px;
+
+    object-fit:cover;
 
 }
 
 .menu-info{
 
-padding:10px;
+    padding:15px;
 
-text-align:center;
+    text-align:center;
 
 }
 
 .price{
 
-display:inline-block;
+    display:inline-block;
 
-margin-top:8px;
+    margin-top:10px;
 
-background:#2563eb;
+    background:#2563eb;
 
-color:white;
+    color:white;
 
-padding:6px 15px;
+    padding:8px 20px;
 
-border-radius:20px;
-
-}
-
-/* MODAL */
-
-.modal{
-
-position:fixed;
-
-inset:0;
-
-background:rgba(0,0,0,0.6);
-
-display:none;
-
-justify-content:center;
-
-align-items:center;
-
-z-index:3000;
+    border-radius:20px;
 
 }
 
-.modal-content{
+.add-btn{
 
-background:white;
+    margin-top:10px;
 
-padding:20px;
+    padding:8px 15px;
 
-border-radius:15px;
+    border:none;
 
-width:90%;
+    border-radius:20px;
 
-max-width:420px;
+    background:#2563eb;
 
-}
+    color:white;
 
-.modal-content button,
-
-.modal-content select{
-
-width:100%;
-
-padding:10px;
-
-margin-top:10px;
+    cursor:pointer;
 
 }
 
-/* CART BUTTON */
+/* CONTACT */
+
+.contact button{
+
+    padding:12px 30px;
+
+    background:#25d366;
+
+    border:none;
+
+    border-radius:30px;
+
+    color:white;
+
+    font-size:16px;
+
+}
+
+/* FOOTER */
+
+footer{
+
+    background:#1e3a8a;
+
+    color:white;
+
+    text-align:center;
+
+    padding:30px;
+
+}
+
+/* CART */
 
 .cart-btn{
 
-position:fixed;
+    position:fixed;
 
-bottom:20px;
+    bottom:25px;
 
-right:20px;
+    right:25px;
 
-background:#2563eb;
+    background:#2563eb;
 
-color:white;
+    color:white;
 
-padding:15px 20px;
+    border:none;
 
-border-radius:50px;
+    padding:15px 20px;
 
-border:none;
+    border-radius:50px;
 
-cursor:pointer;
+    cursor:pointer;
 
-font-weight:bold;
-
-z-index:2000;
+    z-index:2000;
 
 }
 
-.qty-btn{
+.cart-btn span{
 
-padding:5px 10px;
+    background:red;
 
-border:none;
+    padding:3px 8px;
 
-background:#2563eb;
+    border-radius:50%;
 
-color:white;
+}
 
-border-radius:5px;
+.cart-modal{
 
-cursor:pointer;
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,0.6);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:3000;
+
+}
+
+.cart-box{
+
+    background:white;
+
+    width:90%;
+
+    max-width:400px;
+
+    padding:20px;
+
+    border-radius:20px;
+
+}
+
+.btn-send{
+
+    width:100%;
+
+    margin-top:10px;
+
+    padding:12px;
+
+    background:#25d366;
+
+    border:none;
+
+    color:white;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+.btn-close{
+
+    width:100%;
+
+    margin-top:10px;
+
+    padding:12px;
+
+    background:#999;
+
+    border:none;
+
+    color:white;
+
+    border-radius:10px;
+
+    cursor:pointer;
 
 }
 
@@ -227,6 +489,7 @@ cursor:pointer;
 </head>
 
 <body>
+
 <!-- HEADER -->
 <header>
 <nav>
@@ -712,7 +975,7 @@ cursor:pointer;
 <div class="menu-info">
 <h3>Petite bouteille</h3>
 <span class="price">100 FDJ</span>
-</div>
+</div> 
 </div>
 
 <div class="menu-card">
@@ -729,47 +992,40 @@ cursor:pointer;
 </section>
 
 <!-- CONTACT -->
+
 <section class="contact" id="contact">
+
 <h2>Contact</h2>
+
 <p>📞 +253 77118830</p>
-<p>📍 Gabod Aviation</p>
+
 <button>WhatsApp</button>
+
 </section>
 
-<!-- FOOTER -->
 <footer>
-<p>©️ 2026 Zaphir Restaurant</p>
+
+<p>© 2026 Zaphir Restaurant</p>
+
 </footer>
 
-<!-- CART BUTTON -->
+<!-- CART -->
 
-<button class="cart-btn" onclick="openCart()">
+<button id="cartBtn" class="cart-btn">🛒 <span id="cartCount">0</span></button>
 
-🛒 Panier (<span id="cartCount">0</span>)
+<div id="cartModal" class="cart-modal">
 
-</button>
+<div class="cart-box">
 
-<!-- MODAL -->
-
-<div class="modal" id="cartModal">
-
-<div class="modal-content">
-
-<h2>Commande</h2>
+<h2>Votre commande</h2>
 
 <div id="cartItems"></div>
 
-<select id="orderType" onchange="checkTable()">
-
-<option value="commande">📦 Commande</option>
-
-<option value="surplace">🍽️ Sur place</option>
-
-</select>
+<p>Total: <span id="cartTotal">0</span> FDJ</p>
 
 <select id="tableSelect">
 
-<option value="">-- Table --</option>
+<option value="">Choisir table</option>
 
 <script>
 
@@ -783,11 +1039,13 @@ document.write(`<option value="T${i}">T${i}</option>`);
 
 </select>
 
-<h3>Total: <span id="totalPrice">0</span> FDJ</h3>
+<label><input type="radio" name="type" value="Livraison" checked> Livraison</label>
 
-<button onclick="sendWhatsApp()">📲 WhatsApp</button>
+<label><input type="radio" name="type" value="Sur place"> Sur place</label>
 
-<button onclick="closeCart()">Fermer</button>
+<button class="btn-send" onclick="sendWhatsApp()">WhatsApp</button>
+
+<button class="btn-close" onclick="closeCart()">Fermer</button>
 
 </div>
 
@@ -795,75 +1053,107 @@ document.write(`<option value="T${i}">T${i}</option>`);
 
 <script>
 
-let cart = [];
+// SLIDER
 
-// ================== SELECT ITEM ==================
+let slides=document.querySelectorAll(".slide");
 
-document.querySelectorAll(".menu-card").forEach(card=>{
+let index=0;
 
-card.onclick=()=>{
+function show(i){
 
-let name = card.querySelector("h3").innerText;
+slides.forEach(s=>s.classList.remove("active"));
 
-let price = parseInt(card.querySelector(".price").innerText);
-
-let item = cart.find(p=>p.name===name);
-
-if(item){
-
-item.qty++;
-
-}else{
-
-cart.push({name, price, qty:1});
+slides[i].classList.add("active");
 
 }
 
-card.classList.add("selected");
+document.querySelector(".next").onclick=()=>{
 
-updateCart();
+index=(index+1)%slides.length;
+
+show(index);
+
+};
+
+document.querySelector(".prev").onclick=()=>{
+
+index=(index-1+slides.length)%slides.length;
+
+show(index);
+
+};
+
+setInterval(()=>{
+
+index=(index+1)%slides.length;
+
+show(index);
+
+},4000);
+
+// TABS
+
+document.querySelectorAll(".tab-btn").forEach(btn=>{
+
+btn.onclick=()=>{
+
+document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+
+document.querySelectorAll(".menu-content").forEach(c=>c.classList.remove("active"));
+
+btn.classList.add("active");
+
+document.getElementById(btn.dataset.tab).classList.add("active");
 
 }
 
 });
 
-// ================== CART UPDATE ==================
+// CART
 
-function updateCart(){
+let cart=[];
 
-document.getElementById("cartCount").innerText =
+function addToCart(name,price){
 
-cart.reduce((a,b)=>a+b.qty,0);
+let item=cart.find(i=>i.name===name);
 
-renderCart();
+if(item) item.qty++;
+
+else cart.push({name,price:parseInt(price),qty:1});
+
+updateCart();
 
 }
 
-// ================== RENDER CART ==================
+function updateCart(){
 
-function renderCart(){
+let list=document.getElementById("cartItems");
 
-let box = document.getElementById("cartItems");
+let total=0;
 
-box.innerHTML = "";
+let count=0;
 
-cart.forEach((item,i)=>{
+list.innerHTML="";
 
-box.innerHTML += `
+cart.forEach((i,index)=>{
 
-<div style="display:flex;justify-content:space-between;align-items:center;margin:10px 0">
+total+=i.price*i.qty;
 
-<span>${item.name}</span>
+count+=i.qty;
+
+list.innerHTML+=`
 
 <div>
 
-<button class="qty-btn" onclick="minus(${i})">−</button>
+<b>${i.name}</b>
 
-<span style="margin:0 10px">${item.qty}</span>
+<br>${i.price} FDJ
 
-<button class="qty-btn" onclick="plus(${i})">+</button>
+<button onclick="changeQty(${index},-1)">-</button>
 
-</div>
+${i.qty}
+
+<button onclick="changeQty(${index},1)">+</button>
 
 </div>
 
@@ -871,53 +1161,45 @@ box.innerHTML += `
 
 });
 
-calcTotal();
+document.getElementById("cartTotal").innerText=total;
+
+document.getElementById("cartCount").innerText=count;
 
 }
 
-// ================== + / - ==================
+function changeQty(i,v){
 
-function plus(i){
+cart[i].qty+=v;
 
-cart[i].qty++;
+if(cart[i].qty<=0) cart.splice(i,1);
 
 updateCart();
 
 }
 
-function minus(i){
+// ADD BUTTONS
 
-cart[i].qty--;
+document.querySelectorAll(".add-btn").forEach(btn=>{
 
-if(cart[i].qty<=0){
+btn.onclick=(e)=>{
 
-cart.splice(i,1);
+let card=e.target.closest(".menu-card");
 
-}
+let name=card.querySelector("h3").innerText;
 
-updateCart();
+let price=card.querySelector(".price").innerText.replace(" FDJ","");
 
-}
-
-// ================== TOTAL ==================
-
-function calcTotal(){
-
-let total = cart.reduce((a,b)=>a+b.price*b.qty,0);
-
-document.getElementById("totalPrice").innerText = total;
-
-return total;
+addToCart(name,price);
 
 }
 
-// ================== MODAL ==================
+});
 
-function openCart(){
+// CART OPEN
+
+document.getElementById("cartBtn").onclick=()=>{
 
 document.getElementById("cartModal").style.display="flex";
-
-renderCart();
 
 }
 
@@ -927,71 +1209,47 @@ document.getElementById("cartModal").style.display="none";
 
 }
 
-// ================== CHECK TABLE ==================
-
-function checkTable(){
-
-let type = document.getElementById("orderType").value;
-
-let table = document.getElementById("tableSelect");
-
-if(type==="surplace"){
-
-table.required = true;
-
-}else{
-
-table.required = false;
-
-}
-
-}
-
-// ================== WHATSAPP ==================
+// WHATSAPP
 
 function sendWhatsApp(){
 
-let type = document.getElementById("orderType").value;
+if(cart.length===0){
 
-let table = document.getElementById("tableSelect").value;
-
-if(type==="surplace" && !table){
-
-alert("Choisis une table !");
+alert("Panier vide");
 
 return;
 
 }
 
-let total = calcTotal();
+let type=document.querySelector('input[name="type"]:checked').value;
 
-let msg = "🧾 *ZAPHIR COMMANDE*%0A%0A";
+let table=document.getElementById("tableSelect").value;
 
-cart.forEach(i=>{
+if(type==="Sur place" && !table){
 
-msg += `• ${i.name} x${i.qty} = ${i.price*i.qty} FDJ%0A`;
+alert("Choisir table");
 
-});
-
-msg += `%0A💰 Total: ${total} FDJ%0A`;
-
-msg += `📦 Type: ${type}%0A`;
-
-if(type==="surplace"){
-
-msg += `🪑 Table: ${table}%0A`;
+return;
 
 }
 
-// CLIENT
+let msg="🛒 Commande Zaphir\n\n";
 
-window.open(`https://wa.me/77118830?text=${msg}`,"_blank");
+cart.forEach(i=>{
 
-// CHEF
+msg+=`- ${i.name} x${i.qty} = ${i.price*i.qty} FDJ\n`;
 
-let chef = "👨‍🍳 COMMANDE CUISINE%0A%0A" + msg;
+});
 
-console.log(chef);
+let total=document.getElementById("cartTotal").innerText;
+
+msg+=`\nTotal: ${total} FDJ`;
+
+msg+=`\nType: ${type}`;
+
+if(table) msg+=`\nTable: ${table}`;
+
+window.open("https://wa.me/25377118830?text="+encodeURIComponent(msg));
 
 }
 
