@@ -1,224 +1,218 @@
 <!DOCTYPE html>
-
 <html lang="fr">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Zaphir Restaurant</title>
 
 <style>
 
 /* RESET */
-
 *{
-
     margin:0;
-
     padding:0;
-
     box-sizing:border-box;
-
     font-family:"Segoe UI", Arial, sans-serif;
-
 }
 
 html{scroll-behavior:smooth;}
-
 body{background:#f4f6fb; overflow-x:hidden;}
 
 /* HEADER */
-
 header{
-
     position:fixed;
-
     top:15px;
-
     left:50%;
-
     transform:translateX(-50%);
-
     width:92%;
-
     max-width:1200px;
-
     padding:14px 25px;
-
     border-radius:50px;
-
     background:rgba(255,255,255,0.15);
-
     backdrop-filter:blur(12px);
-
     z-index:1000;
-
 }
 
-nav{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+nav{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
 
 nav a{
-
-    color:white;text-decoration:none;font-weight:600;
-
-    padding:10px 20px;border-radius:30px;
-
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    padding:10px 20px;
+    border-radius:30px;
 }
 
-nav a:hover, nav .active{background:white;color:#2563eb;}
+nav a:hover, nav .active{
+    background:white;
+    color:#2563eb;
+}
 
 /* HERO */
+.hero{
+    width:100%;
+    height:65vh;
+    position:relative;
+}
 
-.hero{width:100%;height:65vh;position:relative;}
-
-.slide{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0;transition:1s;}
+.slide{
+    position:absolute;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:0;
+    transition:1s;
+}
 
 .slide.active{opacity:1;}
 
-.overlay{position:absolute;inset:0;background:rgba(0,0,0,0.4);}
-
-.hero-content{
-
-    position:absolute;top:50%;left:50%;
-
-    transform:translate(-50%,-50%);
-
-    text-align:center;color:white;
-
+.overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.4);
 }
 
-.hero-content h1{font-size:60px;}
+.hero-content{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    color:white;
+    z-index:2;
+}
 
+.hero-content h1{font-size:70px;}
+.hero-content p{font-size:22px;}
 .hero-content button{
+    padding:15px 35px;
+    border:none;
+    border-radius:30px;
+    background:#2563eb;
+    color:white;
+}
 
-    padding:15px 30px;border:none;border-radius:30px;
+/* BUTTONS */
+.prev,.next{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    border:none;
+    background:rgba(255,255,255,0.3);
+    color:white;
+    font-size:30px;
+    cursor:pointer;
+}
 
-    background:#2563eb;color:white;cursor:pointer;
+.prev{left:20px;}
+.next{right:20px;}
 
+/* SECTIONS */
+.about, .contact{
+    padding:80px 20px;
+    text-align:center;
+}
+
+.about h2, .contact h2{
+    font-size:40px;
+    color:#1e3a8a;
+    margin-bottom:20px;
 }
 
 /* MENU */
-
-.menu-section{padding:80px 20px;}
-
-.tabs{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:30px;}
-
-.tab-btn{
-
-    padding:10px 20px;border:none;border-radius:30px;
-
-    background:white;cursor:pointer;
-
+.menu-section{
+    padding:80px 20px;
 }
 
-.tab-btn.active{background:#2563eb;color:white;}
+.tabs{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-bottom:40px;
+}
+
+.tab-btn{
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    background:white;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.tab-btn.active{
+    background:#2563eb;
+    color:white;
+}
 
 .menu-content{display:none;}
-
 .menu-content.active{display:block;}
 
 .menu-grid{
-
     display:grid;
-
     grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-
     gap:20px;
-
 }
 
 .menu-card{
-
-    background:white;border-radius:20px;overflow:hidden;
-
-    cursor:pointer;transition:0.2s;
-
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
 }
 
-.menu-card:hover{transform:scale(1.03);}
+.menu-card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
 
-.menu-card img{width:100%;height:180px;object-fit:cover;}
-
-.menu-info{text-align:center;padding:15px;}
+.menu-info{
+    padding:15px;
+    text-align:center;
+}
 
 .price{
-
-    display:inline-block;margin-top:10px;
-
-    background:#2563eb;color:white;
-
-    padding:6px 15px;border-radius:20px;
-
-}
-
-/* CART */
-
-.cart-box{
-
-    position:fixed;
-
-    right:15px;
-
-    bottom:15px;
-
-    width:280px;
-
-    background:white;
-
-    padding:15px;
-
-    border-radius:15px;
-
-    box-shadow:0 10px 25px rgba(0,0,0,0.2);
-
-    z-index:2000;
-
-}
-
-.qty-btn{
-
-    padding:5px 10px;
-
-    margin:5px;
-
-    border:none;
-
-    border-radius:8px;
-
+    display:inline-block;
+    margin-top:10px;
     background:#2563eb;
-
     color:white;
-
-    cursor:pointer;
-
+    padding:8px 20px;
+    border-radius:20px;
 }
 
-.send{
-
-    width:100%;
-
-    padding:10px;
-
+/* CONTACT */
+.contact button{
+    padding:12px 30px;
     background:#25d366;
-
     border:none;
-
-    border-radius:10px;
-
+    border-radius:30px;
     color:white;
-
+    font-size:16px;
     cursor:pointer;
+}
 
+/* FOOTER */
+footer{
+    background:#1e3a8a;
+    color:white;
+    text-align:center;
+    padding:30px;
 }
 
 </style>
-
 </head>
 
 <body>
+
 <!-- HEADER -->
 <header>
 <nav>
@@ -718,164 +712,63 @@ nav a:hover, nav .active{background:white;color:#2563eb;}
 </div>
 </div>
 
-div>
-
 </section>
 
-<!-- CART -->
+<!-- CONTACT -->
+<section class="contact" id="contact">
+<h2>Contact</h2>
+<p>📞 +253 77118830</p>
+<p>📍 Gabod Aviation</p>
+<button>WhatsApp</button>
+</section>
 
-<div class="cart-box">
+<!-- FOOTER -->
+<footer>
+<p>©️ 2026 Zaphir Restaurant</p>
+</footer>
 
-<h3>🛒 Panier</h3>
-
-<div id="cart"></div>
-
-<p><b>Total: <span id="total">0</span> FDJ</b></p>
-
-<select id="orderType" onchange="toggleTable()">
-
-<option value="">Type commande</option>
-
-<option value="delivery">📦 Commande</option>
-
-<option value="onsite">🍽️ Sur place</option>
-
-</select>
-
-<select id="table" style="display:none">
-
-<option value="">Table</option>
-
-<option>T1</option><option>T2</option><option>T3</option><option>T4</option>
-
-<option>T5</option><option>T6</option><option>T7</option><option>T8</option>
-
-<option>T9</option><option>T10</option><option>T11</option><option>T12</option>
-
-<option>T13</option><option>T14</option><option>T15</option><option>T16</option>
-
-<option>T17</option><option>T18</option><option>T19</option><option>T20</option>
-
-</select>
-
-<button class="send" onclick="sendOrder()">📩 WhatsApp</button>
-
-</div>
-
+<!-- SCRIPT -->
 <script>
 
-let cart = [];
+// SLIDER
+const slides = document.querySelectorAll(".slide");
+let index = 0;
 
-function addItem(name, price){
-
-let found = cart.find(i=>i.name===name);
-
-if(found) found.qty++;
-
-else cart.push({name,price,qty:1});
-
-renderCart();
-
+function show(i){
+slides.forEach(s=>s.classList.remove("active"));
+slides[i].classList.add("active");
 }
 
-function changeQty(name, action){
+document.querySelector(".next").onclick = ()=>{
+index = (index+1)%slides.length;
+show(index);
+};
 
-let item = cart.find(i=>i.name===name);
+document.querySelector(".prev").onclick = ()=>{
+index = (index-1+slides.length)%slides.length;
+show(index);
+};
 
-if(!item) return;
+setInterval(()=>{
+index = (index+1)%slides.length;
+show(index);
+},4000);
 
-if(action==='plus') item.qty++;
+// TABS
+const tabs = document.querySelectorAll(".tab-btn");
+const contents = document.querySelectorAll(".menu-content");
 
-if(action==='minus'){
+tabs.forEach(t=>{
+t.onclick=()=>{
+tabs.forEach(x=>x.classList.remove("active"));
+contents.forEach(c=>c.classList.remove("active"));
 
-item.qty--;
-
-if(item.qty<=0) cart = cart.filter(i=>i.name!==name);
-
+t.classList.add("active");
+document.getElementById(t.dataset.tab).classList.add("active");
 }
-
-renderCart();
-
-}
-
-function renderCart(){
-
-let html="";
-
-let total=0;
-
-cart.forEach(i=>{
-
-total += i.price*i.qty;
-
-html += `
-
-<div>
-
-${i.name} (${i.price})
-
-<br>
-
-<button class="qty-btn" onclick="changeQty('${i.name}','minus')">-</button>
-
-${i.qty}
-
-<button class="qty-btn" onclick="changeQty('${i.name}','plus')">+</button>
-
-</div><hr>`;
-
 });
-
-document.getElementById("cart").innerHTML = html;
-
-document.getElementById("total").innerText = total;
-
-}
-
-function toggleTable(){
-
-document.getElementById("table").style.display =
-
-document.getElementById("orderType").value==="onsite" ? "block" : "none";
-
-}
-
-function sendOrder(){
-
-if(cart.length===0){alert("Panier vide");return;}
-
-let type=document.getElementById("orderType").value;
-
-let table=document.getElementById("table").value;
-
-if(!type){alert("Choisir type");return;}
-
-if(type==="onsite" && !table){alert("Choisir table");return;}
-
-let msg="🍽️ Zaphir Restaurant%0A%0A";
-
-let total=0;
-
-cart.forEach(i=>{
-
-total+=i.price*i.qty;
-
-msg+=`${i.qty}x ${i.name} - ${i.price*i.qty} FDJ%0A`;
-
-});
-
-msg+=`%0ATotal: ${total} FDJ`;
-
-window.open(`https://wa.me/25377118830?text=${msg}`,"_blank");
-
-cart=[];
-
-renderCart();
-
-}
 
 </script>
 
 </body>
-
 </html>
