@@ -1,382 +1,242 @@
 <!DOCTYPE html>
-
 <html lang="fr">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Zaphir Restaurant</title>
 
 <style>
 
 /* RESET */
-
 *{
-
     margin:0;
-
     padding:0;
-
     box-sizing:border-box;
-
     font-family:"Segoe UI", Arial, sans-serif;
-
 }
 
 html{scroll-behavior:smooth;}
-
 body{background:#f4f6fb; overflow-x:hidden;}
 
 /* HEADER */
-
 header{
-
     position:fixed;
-
     top:15px;
-
     left:50%;
-
     transform:translateX(-50%);
-
     width:92%;
-
     max-width:1200px;
-
     padding:14px 25px;
-
     border-radius:50px;
-
     background:rgba(255,255,255,0.15);
-
     backdrop-filter:blur(12px);
-
     z-index:1000;
-
 }
 
 nav{
-
     display:flex;
-
     justify-content:center;
-
     gap:20px;
-
     flex-wrap:wrap;
-
 }
 
 nav a{
-
     color:white;
-
     text-decoration:none;
-
     font-weight:600;
-
     padding:10px 20px;
-
     border-radius:30px;
-
 }
 
 nav a:hover, nav .active{
-
     background:white;
-
     color:#2563eb;
-
 }
 
 /* HERO */
-
 .hero{
-
     width:100%;
-
     height:65vh;
-
     position:relative;
-
 }
 
 .slide{
-
     position:absolute;
-
     width:100%;
-
     height:100%;
-
     object-fit:cover;
-
     opacity:0;
-
     transition:1s;
-
 }
 
 .slide.active{opacity:1;}
 
 .overlay{
-
     position:absolute;
-
     inset:0;
-
     background:rgba(0,0,0,0.4);
-
 }
 
 .hero-content{
-
     position:absolute;
-
     top:50%;
-
     left:50%;
-
     transform:translate(-50%,-50%);
-
     text-align:center;
-
     color:white;
-
+    z-index:2;
 }
 
-.hero-content h1{font-size:60px;}
-
+.hero-content h1{font-size:70px;}
+.hero-content p{font-size:22px;}
 .hero-content button{
-
-    padding:15px 30px;
-
+    padding:15px 35px;
     border:none;
-
     border-radius:30px;
-
     background:#2563eb;
-
     color:white;
+}
 
+/* BUTTONS */
+.prev,.next{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    border:none;
+    background:rgba(255,255,255,0.3);
+    color:white;
+    font-size:30px;
+    cursor:pointer;
+}
+
+.prev{left:20px;}
+.next{right:20px;}
+
+/* SECTIONS */
+.about, .contact{
+    padding:80px 20px;
+    text-align:center;
+}
+
+.about h2, .contact h2{
+    font-size:40px;
+    color:#1e3a8a;
+    margin-bottom:20px;
 }
 
 /* MENU */
-
-.menu-section{padding:80px 20px;}
+.menu-section{
+    padding:80px 20px;
+}
 
 .tabs{
-
     display:flex;
-
     justify-content:center;
-
-    gap:10px;
-
+    gap:15px;
     flex-wrap:wrap;
-
-    margin-bottom:30px;
-
+    margin-bottom:40px;
 }
 
 .tab-btn{
-
-    padding:10px 20px;
-
+    padding:12px 25px;
     border:none;
-
     border-radius:30px;
-
     background:white;
-
     cursor:pointer;
-
+    font-weight:bold;
 }
 
 .tab-btn.active{
-
     background:#2563eb;
-
     color:white;
-
 }
 
 .menu-content{display:none;}
-
 .menu-content.active{display:block;}
 
 .menu-grid{
-
     display:grid;
-
     grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-
     gap:20px;
-
 }
 
 .menu-card{
-
     background:white;
-
     border-radius:20px;
-
     overflow:hidden;
-
-    cursor:pointer;
-
-    transition:0.2s;
-
-    position:relative;
-
 }
 
 .menu-card img{
-
     width:100%;
-
-    height:180px;
-
+    height:200px;
     object-fit:cover;
-
 }
 
-.menu-info{padding:15px;text-align:center;}
+.menu-info{
+    padding:15px;
+    text-align:center;
+}
 
 .price{
-
     display:inline-block;
-
     margin-top:10px;
-
     background:#2563eb;
-
     color:white;
-
-    padding:6px 15px;
-
+    padding:8px 20px;
     border-radius:20px;
-
-}
-
-/* ✅ SELECTION */
-
-.menu-card.selected{
-
-    border:3px solid #2563eb;
-
-    transform:scale(1.03);
-
-    box-shadow:0 10px 20px rgba(0,0,0,0.2);
-
-}
-
-.menu-card.selected::after{
-
-    content:"✔";
-
-    position:absolute;
-
-    top:10px;
-
-    right:10px;
-
-    background:#2563eb;
-
-    color:white;
-
-    width:25px;
-
-    height:25px;
-
-    border-radius:50%;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-}
-
-/* BUTTON */
-
-.order-btn{
-
-    display:block;
-
-    margin:40px auto 0;
-
-    padding:15px 30px;
-
-    background:#25d366;
-
-    color:white;
-
-    border:none;
-
-    border-radius:30px;
-
-    font-size:16px;
-
-    cursor:pointer;
-
 }
 
 /* CONTACT */
+.contact button{
+    padding:12px 30px;
+    background:#25d366;
+    border:none;
+    border-radius:30px;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
 
-.contact{
-
+/* FOOTER */
+footer{
+    background:#1e3a8a;
+    color:white;
     text-align:center;
-
-    padding:60px 20px;
-
+    padding:30px;
 }
 
 </style>
-
 </head>
 
 <body>
 
+<!-- HEADER -->
 <header>
-
 <nav>
-
 <a class="active" href="#">Home</a>
-
 <a href="#menu">Menu</a>
-
 <a href="#contact">Contact</a>
-
 </nav>
-
 </header>
 
 <!-- HERO -->
-
 <section class="hero">
 
 <img src="zaphir1.jpeg" class="slide active">
-
 <img src="zaphir2.jpeg" class="slide">
-
 <img src="zaphir3.jpeg" class="slide">
 
 <div class="overlay"></div>
 
 <div class="hero-content">
-
 <h1>Zaphir Restaurant</h1>
-
+<p>Best Food & Drinks</p>
 <button>Commander</button>
-
 </div>
 
-</section>
 <button class="prev">&#10094;</button>
 <button class="next">&#10095;</button>
 
@@ -854,469 +714,14 @@ nav a:hover, nav .active{
 
 </section>
 
-<!-- BUTTON WHATSAPP -->
-
-<button class="order-btn" onclick="openPopup()">
-
-📌 Envoyer commande
-
-</button>
-
+<!-- CONTACT -->
+<section class="contact" id="contact">
+<h2>Contact</h2>
+<p>📞 +253 77118830</p>
+<p>📍 Gabod Aviation</p>
+<button>WhatsApp</button>
 </section>
 
-<!-- POPUP -->
-
-<div class="popup" id="popup">
-
-<div class="popup-box">
-
-<h3>Finaliser commande</h3>
-
-<select id="type">
-
-<option value="Commande">Commande</option>
-
-<option value="Sur place">Sur place</option>
-
-</select>
-
-<select id="table">
-
-<option value="">Choisir table</option>
-
-<script>
-
-for(let i=1;i<=20;i++){
-
-document.write(`<option value="T${i}">T${i}</option>`);
-
-}
-
-</script>
-
-</select>
-
-<button class="order-btn" onclick="send()">Envoyer WhatsApp</button>
-
-<button onclick="closePopup()">Annuler</button>
-
-</div>
-
-</div>
-
-<script>
-
-let cart = {};
-
-/* ===================== */
-
-/* QUANTITE + SELECTION */
-
-/* ===================== */
-
-document.querySelectorAll(".menu-card").forEach(card=>{
-
-let name = card.querySelector("h3").innerText;
-
-let price = parseInt(card.querySelector(".price").innerText);
-
-let qty = 0;
-
-let box = document.createElement("div");
-
-box.className="qty-box";
-
-box.innerHTML=`
-
-<button class="minus">-</button>
-
-<span>0</span>
-
-<button class="plus">+</button>
-
-`;
-
-card.appendChild(box);
-
-let span = box.querySelector("span");
-
-box.querySelector(".plus").onclick=(e)=>{
-
-e.stopPropagation();
-
-qty++;
-
-update();
-
-};
-
-box.querySelector(".minus").onclick=(e)=>{
-
-e.stopPropagation();
-
-if(qty>0) qty--;
-
-update();
-
-};
-
-function update(){
-
-span.innerText = qty;
-
-if(qty>0){
-
-cart[name]={qty,price};
-
-card.classList.add("selected");
-
-}else{
-
-delete cart[name];
-
-card.classList.remove("selected");
-
-}
-
-}
-
-});
-
-/* ===================== */
-
-/* POPUP */
-
-/* ===================== */
-
-function openPopup(){
-
-if(Object.keys(cart).length===0){
-
-alert("Aucun article sélectionné");
-
-return;
-
-}
-
-document.getElementById("popup").style.display="flex";
-
-}
-
-function closePopup(){
-
-document.getElementById("popup").style.display="none";
-
-}
-
-/* ===================== */
-
-/* WHATSAPP + CHEF */
-
-/* ===================== */
-
-function send(){
-
-let type = document.getElementById("type").value;
-
-let table = document.getElementById("table").value;
-
-if(type==="Sur place" && !table){
-
-alert("Choisir une table");
-
-return;
-
-}
-
-let msg="🍽️ ZAPHIR RESTAURANT%0A%0A";
-
-msg+="📌 "+type+"%0A";
-
-if(table) msg+="🪑 "+table+"%0A%0A";
-
-let total=0;
-
-let i=1;
-
-for(let n in cart){
-
-let item=cart[n];
-
-let sub=item.qty*item.price;
-
-total+=sub;
-
-msg+=`${i}. ${n} x${item.qty} = ${sub} FDJ%0A`;
-
-i++;
-
-}
-
-msg+="%0A💰 TOTAL: "+total+" FDJ";
-
-window.open("https://wa.me/25377118830?text="+msg,"_blank");
-
-/* CHEF */
-
-let chef="👨‍🍳 NOUVELLE COMMANDE%0A%0A";
-
-chef+=type+"%0A";
-
-if(table) chef+=table+"%0A%0A";
-
-for(let n in cart){
-
-let item=cart[n];
-
-chef+=`- ${n} x${item.qty}%0A`;
-
-}
-
-chef+="%0ATOTAL: "+total+" FDJ";
-
-setTimeout(()=>{
-
-window.open("https://wa.me/25377118830?text="+chef,"_blank");
-
-},1500);
-
-}
-
-</script>
-
-</body>
-
-</html><button class="order-btn" onclick="openPopup()">
-
-📌 Envoyer commande
-
-</button>
-
-</section>
-
-<!-- POPUP -->
-
-<div class="popup" id="popup">
-
-<div class="popup-box">
-
-<h3>Finaliser commande</h3>
-
-<select id="type">
-
-<option value="Commande">Commande</option>
-
-<option value="Sur place">Sur place</option>
-
-</select>
-
-<select id="table">
-
-<option value="">Choisir table</option>
-
-<script>
-
-for(let i=1;i<=20;i++){
-
-document.write(`<option value="T${i}">T${i}</option>`);
-
-}
-
-</script>
-
-</select>
-
-<button class="order-btn" onclick="send()">Envoyer WhatsApp</button>
-
-<button onclick="closePopup()">Annuler</button>
-
-</div>
-
-</div>
-
-<script>
-
-let cart = {};
-
-/* ===================== */
-
-/* QUANTITE + SELECTION */
-
-/* ===================== */
-
-document.querySelectorAll(".menu-card").forEach(card=>{
-
-let name = card.querySelector("h3").innerText;
-
-let price = parseInt(card.querySelector(".price").innerText);
-
-let qty = 0;
-
-let box = document.createElement("div");
-
-box.className="qty-box";
-
-box.innerHTML=`
-
-<button class="minus">-</button>
-
-<span>0</span>
-
-<button class="plus">+</button>
-
-`;
-
-card.appendChild(box);
-
-let span = box.querySelector("span");
-
-box.querySelector(".plus").onclick=(e)=>{
-
-e.stopPropagation();
-
-qty++;
-
-update();
-
-};
-
-box.querySelector(".minus").onclick=(e)=>{
-
-e.stopPropagation();
-
-if(qty>0) qty--;
-
-update();
-
-};
-
-function update(){
-
-span.innerText = qty;
-
-if(qty>0){
-
-cart[name]={qty,price};
-
-card.classList.add("selected");
-
-}else{
-
-delete cart[name];
-
-card.classList.remove("selected");
-
-}
-
-}
-
-});
-
-/* ===================== */
-
-/* POPUP */
-
-/* ===================== */
-
-function openPopup(){
-
-if(Object.keys(cart).length===0){
-
-alert("Aucun article sélectionné");
-
-return;
-
-}
-
-document.getElementById("popup").style.display="flex";
-
-}
-
-function closePopup(){
-
-document.getElementById("popup").style.display="none";
-
-}
-
-/* ===================== */
-
-/* WHATSAPP + CHEF */
-
-/* ===================== */
-
-function send(){
-
-let type = document.getElementById("type").value;
-
-let table = document.getElementById("table").value;
-
-if(type==="Sur place" && !table){
-
-alert("Choisir une table");
-
-return;
-
-}
-
-let msg="🍽️ ZAPHIR RESTAURANT%0A%0A";
-
-msg+="📌 "+type+"%0A";
-
-if(table) msg+="🪑 "+table+"%0A%0A";
-
-let total=0;
-
-let i=1;
-
-for(let n in cart){
-
-let item=cart[n];
-
-let sub=item.qty*item.price;
-
-total+=sub;
-
-msg+=`${i}. ${n} x${item.qty} = ${sub} FDJ%0A`;
-
-i++;
-
-}
-
-msg+="%0A💰 TOTAL: "+total+" FDJ";
-
-window.open("https://wa.me/25377118830?text="+msg,"_blank");
-
-/* CHEF */
-
-let chef="👨‍🍳 NOUVELLE COMMANDE%0A%0A";
-
-chef+=type+"%0A";
-
-if(table) chef+=table+"%0A%0A";
-
-for(let n in cart){
-
-let item=cart[n];
-
-chef+=`- ${n} x${item.qty}%0A`;
-
-}
-
-chef+="%0ATOTAL: "+total+" FDJ";
-
-setTimeout(()=>{
-
-window.open("https://wa.me/25377118830?text="+chef,"_blank");
-
-},1500);
-
-}
-
-</script>
-
-</body>
-
-</html>
 <!-- FOOTER -->
 <footer>
 <p>©️ 2026 Zaphir Restaurant</p>
@@ -1366,4 +771,4 @@ document.getElementById(t.dataset.tab).classList.add("active");
 </script>
 
 </body>
-</html>
+</htm>
