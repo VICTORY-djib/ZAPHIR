@@ -72,6 +72,8 @@ nav{
 
 nav a{
 
+    position:relative;
+
     color:white;
 
     text-decoration:none;
@@ -82,13 +84,53 @@ nav a{
 
     border-radius:30px;
 
+    transition:0.3s;
+
 }
 
-nav a:hover, nav .active{
+/* ANIMATION BLEUE */
+
+nav a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:6px;
+
+    width:0%;
+
+    height:3px;
+
+    background:#2563eb;
+
+    border-radius:10px;
+
+    transition:0.3s ease;
+
+    transform:translateX(-50%);
+
+}
+
+nav a:hover::after{
+
+    width:60%;
+
+}
+
+nav a.active{
+
+    color:#2563eb;
 
     background:white;
 
-    color:#2563eb;
+}
+
+nav a.active::after{
+
+    width:80%;
 
 }
 
@@ -168,7 +210,7 @@ nav a:hover, nav .active{
 
 }
 
-/* SLIDER BUTTONS */
+/* SLIDER */
 
 .prev,.next{
 
@@ -288,7 +330,9 @@ nav a:hover, nav .active{
 
     overflow:hidden;
 
-    padding-bottom:10px;
+    padding-bottom:15px;
+
+    text-align:center;
 
 }
 
@@ -305,8 +349,6 @@ nav a:hover, nav .active{
 .menu-info{
 
     padding:15px;
-
-    text-align:center;
 
 }
 
@@ -326,6 +368,8 @@ nav a:hover, nav .active{
 
 }
 
+/* BOUTON AJOUT */
+
 .add-btn{
 
     margin-top:10px;
@@ -336,7 +380,7 @@ nav a:hover, nav .active{
 
     border-radius:20px;
 
-    background:#2563eb;
+    background:#1e3a8a;
 
     color:white;
 
@@ -444,15 +488,13 @@ footer{
 
 }
 
-.btn-send{
+.btn-send, .btn-close{
 
     width:100%;
 
     margin-top:10px;
 
     padding:12px;
-
-    background:#25d366;
 
     border:none;
 
@@ -464,25 +506,9 @@ footer{
 
 }
 
-.btn-close{
+.btn-send{background:#25d366;}
 
-    width:100%;
-
-    margin-top:10px;
-
-    padding:12px;
-
-    background:#999;
-
-    border:none;
-
-    color:white;
-
-    border-radius:10px;
-
-    cursor:pointer;
-
-}
+.btn-close{background:#999;}
 
 </style>
 
@@ -1005,7 +1031,7 @@ footer{
 
 <footer>
 
-<p>© 2026 Zaphir Restaurant</p>
+<p>©️ 2026 Zaphir Restaurant</p>
 
 </footer>
 
@@ -1039,10 +1065,6 @@ document.write(`<option value="T${i}">T${i}</option>`);
 
 </select>
 
-<label><input type="radio" name="type" value="Livraison" checked> Livraison</label>
-
-<label><input type="radio" name="type" value="Sur place"> Sur place</label>
-
 <button class="btn-send" onclick="sendWhatsApp()">WhatsApp</button>
 
 <button class="btn-close" onclick="closeCart()">Fermer</button>
@@ -1053,7 +1075,7 @@ document.write(`<option value="T${i}">T${i}</option>`);
 
 <script>
 
-// SLIDER
+/* SLIDER */
 
 let slides=document.querySelectorAll(".slide");
 
@@ -1091,7 +1113,7 @@ show(index);
 
 },4000);
 
-// TABS
+/* TABS */
 
 document.querySelectorAll(".tab-btn").forEach(btn=>{
 
@@ -1109,7 +1131,7 @@ document.getElementById(btn.dataset.tab).classList.add("active");
 
 });
 
-// CART
+/* CART */
 
 let cart=[];
 
@@ -1145,9 +1167,9 @@ list.innerHTML+=`
 
 <div>
 
-<b>${i.name}</b>
+<b>${i.name}</b><br>
 
-<br>${i.price} FDJ
+${i.price} FDJ
 
 <button onclick="changeQty(${index},-1)">-</button>
 
@@ -1177,7 +1199,7 @@ updateCart();
 
 }
 
-// ADD BUTTONS
+/* BUTTONS AJOUT */
 
 document.querySelectorAll(".add-btn").forEach(btn=>{
 
@@ -1195,7 +1217,7 @@ addToCart(name,price);
 
 });
 
-// CART OPEN
+/* CART OPEN */
 
 document.getElementById("cartBtn").onclick=()=>{
 
@@ -1209,25 +1231,13 @@ document.getElementById("cartModal").style.display="none";
 
 }
 
-// WHATSAPP
+/* WHATSAPP */
 
 function sendWhatsApp(){
 
 if(cart.length===0){
 
 alert("Panier vide");
-
-return;
-
-}
-
-let type=document.querySelector('input[name="type"]:checked').value;
-
-let table=document.getElementById("tableSelect").value;
-
-if(type==="Sur place" && !table){
-
-alert("Choisir table");
 
 return;
 
@@ -1241,17 +1251,25 @@ msg+=`- ${i.name} x${i.qty} = ${i.price*i.qty} FDJ\n`;
 
 });
 
-let total=document.getElementById("cartTotal").innerText;
-
-msg+=`\nTotal: ${total} FDJ`;
-
-msg+=`\nType: ${type}`;
-
-if(table) msg+=`\nTable: ${table}`;
+msg+=`\nTotal: ${document.getElementById("cartTotal").innerText} FDJ`;
 
 window.open("https://wa.me/25377118830?text="+encodeURIComponent(msg));
 
 }
+
+/* NAV ACTIVE */
+
+document.querySelectorAll("nav a").forEach(link=>{
+
+link.onclick=()=>{
+
+document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
+
+link.classList.add("active");
+
+};
+
+});
 
 </script>
 
