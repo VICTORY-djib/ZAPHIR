@@ -26,197 +26,13 @@
 
 }
 
-html{scroll-behavior:smooth;}
+body{
 
-body{background:#f4f6fb; overflow-x:hidden;}
-
-/* HEADER */
-
-header{
-
-    position:fixed;
-
-    top:15px;
-
-    left:50%;
-
-    transform:translateX(-50%);
-
-    width:92%;
-
-    max-width:1200px;
-
-    padding:14px 25px;
-
-    border-radius:50px;
-
-    background:rgba(255,255,255,0.15);
-
-    backdrop-filter:blur(12px);
-
-    z-index:1000;
+    background:#f4f6fb;
 
 }
 
-nav{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:20px;
-
-    flex-wrap:wrap;
-
-}
-
-nav a{
-
-    color:white;
-
-    text-decoration:none;
-
-    font-weight:600;
-
-    padding:10px 20px;
-
-    border-radius:30px;
-
-}
-
-nav a:hover, nav .active{
-
-    background:white;
-
-    color:#2563eb;
-
-}
-
-/* HERO */
-
-.hero{
-
-    width:100%;
-
-    height:65vh;
-
-    position:relative;
-
-}
-
-.slide{
-
-    position:absolute;
-
-    width:100%;
-
-    height:100%;
-
-    object-fit:cover;
-
-    opacity:0;
-
-    transition:1s;
-
-}
-
-.slide.active{opacity:1;}
-
-.overlay{
-
-    position:absolute;
-
-    inset:0;
-
-    background:rgba(0,0,0,0.4);
-
-}
-
-.hero-content{
-
-    position:absolute;
-
-    top:50%;
-
-    left:50%;
-
-    transform:translate(-50%,-50%);
-
-    text-align:center;
-
-    color:white;
-
-}
-
-.hero-content h1{font-size:60px;}
-
-.hero-content button{
-
-    padding:15px 30px;
-
-    border:none;
-
-    border-radius:30px;
-
-    background:#2563eb;
-
-    color:white;
-
-}
-
-/* MENU */
-
-.menu-section{padding:80px 20px;}
-
-.tabs{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:10px;
-
-    flex-wrap:wrap;
-
-    margin-bottom:30px;
-
-}
-
-.tab-btn{
-
-    padding:10px 20px;
-
-    border:none;
-
-    border-radius:30px;
-
-    background:white;
-
-    cursor:pointer;
-
-}
-
-.tab-btn.active{
-
-    background:#2563eb;
-
-    color:white;
-
-}
-
-.menu-content{display:none;}
-
-.menu-content.active{display:block;}
-
-.menu-grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-
-    gap:20px;
-
-}
+/* MENU CARD */
 
 .menu-card{
 
@@ -228,9 +44,11 @@ nav a:hover, nav .active{
 
     cursor:pointer;
 
-    transition:0.2s;
+    transition:0.3s;
 
     position:relative;
+
+    margin:10px;
 
 }
 
@@ -244,7 +62,13 @@ nav a:hover, nav .active{
 
 }
 
-.menu-info{padding:15px;text-align:center;}
+.menu-info{
+
+    padding:10px;
+
+    text-align:center;
+
+}
 
 .price{
 
@@ -262,7 +86,7 @@ nav a:hover, nav .active{
 
 }
 
-/* ✅ SELECTION */
+/* SELECTION */
 
 .menu-card.selected{
 
@@ -270,47 +94,77 @@ nav a:hover, nav .active{
 
     transform:scale(1.03);
 
-    box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* PANIER */
+
+#cartBox{
+
+    position:fixed;
+
+    right:15px;
+
+    bottom:15px;
+
+    width:320px;
+
+    background:white;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+
+    z-index:9999;
 
 }
 
-.menu-card.selected::after{
+#cartItems{
 
-    content:"✔";
+    max-height:200px;
 
-    position:absolute;
+    overflow:auto;
 
-    top:10px;
+    margin:10px 0;
 
-    right:10px;
+}
+
+.cart-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:8px;
+
+    font-size:14px;
+
+}
+
+.qty-btn{
+
+    padding:4px 8px;
+
+    border:none;
 
     background:#2563eb;
 
     color:white;
 
-    width:25px;
+    border-radius:5px;
 
-    height:25px;
-
-    border-radius:50%;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
+    cursor:pointer;
 
 }
 
-/* BUTTON */
+#cartBox button{
 
-.order-btn{
+    width:100%;
 
-    display:block;
-
-    margin:40px auto 0;
-
-    padding:15px 30px;
+    padding:10px;
 
     background:#25d366;
 
@@ -318,21 +172,25 @@ nav a:hover, nav .active{
 
     border:none;
 
-    border-radius:30px;
+    border-radius:10px;
 
-    font-size:16px;
+    margin-top:10px;
 
     cursor:pointer;
 
 }
 
-/* CONTACT */
+#tableNumber, #orderType{
 
-.contact{
+    width:100%;
 
-    text-align:center;
+    margin-top:5px;
 
-    padding:60px 20px;
+    padding:8px;
+
+    border-radius:8px;
+
+    border:1px solid #ccc;
 
 }
 
@@ -856,95 +714,193 @@ nav a:hover, nav .active{
 <p>©️ 2026 Zaphir Restaurant</p>
 </footer>
 
+<!-- PANIER -->
+
+<div id="cartBox">
+
+<h3>🛒 Panier</h3>
+
+<div id="cartItems"></div>
+
+<p>Total: <b><span id="total">0</span> FDJ</b></p>
+
+<input id="tableNumber" type="number" placeholder="Numéro de table (obligatoire)">
+
+<select id="orderType">
+
+<option value="sur place">Sur place</option>
+
+<option value="emporter">À emporter</option>
+
+</select>
+
+<button onclick="sendOrder()">Envoyer ma commande</button>
+
+</div>
+
 <script>
 
-/* SLIDER */
+/* PANIER */
 
-const slides = document.querySelectorAll(".slide");
+let cart = [];
 
-let i = 0;
+/* AJOUT PRODUIT */
 
-setInterval(()=>{
+document.querySelectorAll(".menu-card").forEach(card => {
 
-slides.forEach(s=>s.classList.remove("active"));
+card.onclick = () => {
 
-i = (i+1)%slides.length;
+const name = card.querySelector("h3").innerText;
 
-slides[i].classList.add("active");
+const price = parseInt(card.querySelector(".price").innerText);
 
-},4000);
+let item = cart.find(i => i.name === name);
 
-/* TABS */
+if(item){
 
-document.querySelectorAll(".tab-btn").forEach(btn=>{
-
-btn.onclick = ()=>{
-
-document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
-
-document.querySelectorAll(".menu-content").forEach(c=>c.classList.remove("active"));
-
-btn.classList.add("active");
-
-document.getElementById(btn.dataset.tab).classList.add("active");
-
-}
-
-});
-
-/* SELECTION */
-
-let selectedItems = [];
-
-document.querySelectorAll(".menu-card").forEach(card=>{
-
-card.onclick = ()=>{
-
-const name = card.querySelector("h3")?.innerText;
-
-const price = card.querySelector(".price")?.innerText;
-
-const item = `${name} - ${price}`;
-
-card.classList.toggle("selected");
-
-if(card.classList.contains("selected")){
-
-selectedItems.push(item);
+    item.qty++;
 
 }else{
 
-selectedItems = selectedItems.filter(i=>i!==item);
+    cart.push({name, price, qty:1});
 
 }
 
-}
+card.classList.add("selected");
+
+updateCart();
+
+};
 
 });
 
-/* WHATSAPP */
+/* UPDATE PANIER */
+
+function updateCart(){
+
+let container = document.getElementById("cartItems");
+
+container.innerHTML = "";
+
+let total = 0;
+
+cart.forEach((item, index)=>{
+
+total += item.price * item.qty;
+
+container.innerHTML += `
+
+<div class="cart-item">
+
+<span>${item.name} x${item.qty}</span>
+
+<div>
+
+<button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
+
+<button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("total").innerText = total;
+
+}
+
+/* QUANTITÉ */
+
+function changeQty(index, change){
+
+cart[index].qty += change;
+
+if(cart[index].qty <= 0){
+
+cart.splice(index, 1);
+
+}
+
+updateCart();
+
+}
+
+/* ENVOI WHATSAPP */
 
 function sendOrder(){
 
-if(selectedItems.length === 0){
+let table = document.getElementById("tableNumber").value;
 
-alert("Aucun article sélectionné 📌");
+let type = document.getElementById("orderType").value;
+
+if(cart.length === 0){
+
+alert("Panier vide ❌");
 
 return;
 
 }
 
-let message = "🍽️ Commande Zaphir Restaurant:%0A%0A";
+if(table === ""){
 
-selectedItems.forEach((item,i)=>{
+alert("Numéro de table obligatoire 📌");
 
-message += `${i+1}. ${item}%0A`;
+return;
+
+}
+
+let total = 0;
+
+let msg = "🍽️ COMMANDE ZAPHIR%0A%0A";
+
+msg += "Table: " + table + "%0A";
+
+msg += "Type: " + type + "%0A%0A";
+
+cart.forEach((item,i)=>{
+
+let line = item.price * item.qty;
+
+total += line;
+
+msg += `${i+1}. ${item.name} x${item.qty} = ${line} FDJ%0A`;
 
 });
 
-const phone = "25377118830";
+msg += "%0ATOTAL: " + total + " FDJ";
 
-window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+/* CLIENT */
+
+window.open(
+
+"https://wa.me/25377118830?text=" + encodeURIComponent(msg),
+
+"_blank"
+
+);
+
+/* CHEF */
+
+setTimeout(()=>{
+
+window.open(
+
+"https://wa.me/25377118830?text=" + encodeURIComponent("👨‍🍳 CHEF%0A%0A" + msg),
+
+"_blank"
+
+);
+
+},1000);
+
+/* RESET */
+
+cart = [];
+
+updateCart();
 
 }
 
