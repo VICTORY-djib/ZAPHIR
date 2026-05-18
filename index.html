@@ -1,218 +1,232 @@
 <!DOCTYPE html>
+
 <html lang="fr">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Zaphir Restaurant</title>
 
 <style>
 
 /* RESET */
+
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:"Segoe UI", Arial, sans-serif;
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
+font-family:"Segoe UI", Arial, sans-serif;
+
 }
 
-html{scroll-behavior:smooth;}
 body{background:#f4f6fb; overflow-x:hidden;}
 
 /* HEADER */
+
 header{
-    position:fixed;
-    top:15px;
-    left:50%;
-    transform:translateX(-50%);
-    width:92%;
-    max-width:1200px;
-    padding:14px 25px;
-    border-radius:50px;
-    background:rgba(255,255,255,0.15);
-    backdrop-filter:blur(12px);
-    z-index:1000;
+
+position:fixed;
+
+top:15px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:92%;
+
+padding:14px 25px;
+
+border-radius:50px;
+
+background:rgba(0,0,0,0.4);
+
+z-index:1000;
+
 }
 
 nav{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
+
+display:flex;
+
+justify-content:center;
+
+gap:20px;
+
 }
 
 nav a{
-    color:white;
-    text-decoration:none;
-    font-weight:600;
-    padding:10px 20px;
-    border-radius:30px;
+
+color:white;
+
+text-decoration:none;
+
+font-weight:bold;
+
 }
 
-nav a:hover, nav .active{
-    background:white;
-    color:#2563eb;
-}
-
-/* HERO */
-.hero{
-    width:100%;
-    height:65vh;
-    position:relative;
-}
-
-.slide{
-    position:absolute;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    opacity:0;
-    transition:1s;
-}
-
-.slide.active{opacity:1;}
-
-.overlay{
-    position:absolute;
-    inset:0;
-    background:rgba(0,0,0,0.4);
-}
-
-.hero-content{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    text-align:center;
-    color:white;
-    z-index:2;
-}
-
-.hero-content h1{font-size:70px;}
-.hero-content p{font-size:22px;}
-.hero-content button{
-    padding:15px 35px;
-    border:none;
-    border-radius:30px;
-    background:#2563eb;
-    color:white;
-}
-
-/* BUTTONS */
-.prev,.next{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    width:50px;
-    height:50px;
-    border-radius:50%;
-    border:none;
-    background:rgba(255,255,255,0.3);
-    color:white;
-    font-size:30px;
-    cursor:pointer;
-}
-
-.prev{left:20px;}
-.next{right:20px;}
-
-/* SECTIONS */
-.about, .contact{
-    padding:80px 20px;
-    text-align:center;
-}
-
-.about h2, .contact h2{
-    font-size:40px;
-    color:#1e3a8a;
-    margin-bottom:20px;
-}
-
-/* MENU */
-.menu-section{
-    padding:80px 20px;
-}
-
-.tabs{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    flex-wrap:wrap;
-    margin-bottom:40px;
-}
-
-.tab-btn{
-    padding:12px 25px;
-    border:none;
-    border-radius:30px;
-    background:white;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-.tab-btn.active{
-    background:#2563eb;
-    color:white;
-}
-
-.menu-content{display:none;}
-.menu-content.active{display:block;}
-
-.menu-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
-}
+/* MENU CARD */
 
 .menu-card{
-    background:white;
-    border-radius:20px;
-    overflow:hidden;
+
+background:white;
+
+border-radius:20px;
+
+overflow:hidden;
+
+cursor:pointer;
+
+transition:0.3s;
+
+border:2px solid transparent;
+
 }
 
-.menu-card img{
-    width:100%;
-    height:200px;
-    object-fit:cover;
+.menu-card.selected{
+
+border:2px solid #2563eb;
+
+transform:scale(1.03);
+
+}
+
+.menu-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+gap:15px;
+
 }
 
 .menu-info{
-    padding:15px;
-    text-align:center;
+
+padding:10px;
+
+text-align:center;
+
 }
 
 .price{
-    display:inline-block;
-    margin-top:10px;
-    background:#2563eb;
-    color:white;
-    padding:8px 20px;
-    border-radius:20px;
+
+display:inline-block;
+
+margin-top:8px;
+
+background:#2563eb;
+
+color:white;
+
+padding:6px 15px;
+
+border-radius:20px;
+
 }
 
-/* CONTACT */
-.contact button{
-    padding:12px 30px;
-    background:#25d366;
-    border:none;
-    border-radius:30px;
-    color:white;
-    font-size:16px;
-    cursor:pointer;
+/* MODAL */
+
+.modal{
+
+position:fixed;
+
+inset:0;
+
+background:rgba(0,0,0,0.6);
+
+display:none;
+
+justify-content:center;
+
+align-items:center;
+
+z-index:3000;
+
 }
 
-/* FOOTER */
-footer{
-    background:#1e3a8a;
-    color:white;
-    text-align:center;
-    padding:30px;
+.modal-content{
+
+background:white;
+
+padding:20px;
+
+border-radius:15px;
+
+width:90%;
+
+max-width:420px;
+
+}
+
+.modal-content button,
+
+.modal-content select{
+
+width:100%;
+
+padding:10px;
+
+margin-top:10px;
+
+}
+
+/* CART BUTTON */
+
+.cart-btn{
+
+position:fixed;
+
+bottom:20px;
+
+right:20px;
+
+background:#2563eb;
+
+color:white;
+
+padding:15px 20px;
+
+border-radius:50px;
+
+border:none;
+
+cursor:pointer;
+
+font-weight:bold;
+
+z-index:2000;
+
+}
+
+.qty-btn{
+
+padding:5px 10px;
+
+border:none;
+
+background:#2563eb;
+
+color:white;
+
+border-radius:5px;
+
+cursor:pointer;
+
 }
 
 </style>
+
 </head>
 
 <body>
-
 <!-- HEADER -->
 <header>
 <nav>
@@ -727,48 +741,262 @@ footer{
 <p>©️ 2026 Zaphir Restaurant</p>
 </footer>
 
-<!-- SCRIPT -->
+<!-- CART BUTTON -->
+
+<button class="cart-btn" onclick="openCart()">
+
+🛒 Panier (<span id="cartCount">0</span>)
+
+</button>
+
+<!-- MODAL -->
+
+<div class="modal" id="cartModal">
+
+<div class="modal-content">
+
+<h2>Commande</h2>
+
+<div id="cartItems"></div>
+
+<select id="orderType" onchange="checkTable()">
+
+<option value="commande">📦 Commande</option>
+
+<option value="surplace">🍽️ Sur place</option>
+
+</select>
+
+<select id="tableSelect">
+
+<option value="">-- Table --</option>
+
 <script>
 
-// SLIDER
-const slides = document.querySelectorAll(".slide");
-let index = 0;
+for(let i=1;i<=20;i++){
 
-function show(i){
-slides.forEach(s=>s.classList.remove("active"));
-slides[i].classList.add("active");
+document.write(`<option value="T${i}">T${i}</option>`);
+
 }
 
-document.querySelector(".next").onclick = ()=>{
-index = (index+1)%slides.length;
-show(index);
-};
+</script>
 
-document.querySelector(".prev").onclick = ()=>{
-index = (index-1+slides.length)%slides.length;
-show(index);
-};
+</select>
 
-setInterval(()=>{
-index = (index+1)%slides.length;
-show(index);
-},4000);
+<h3>Total: <span id="totalPrice">0</span> FDJ</h3>
 
-// TABS
-const tabs = document.querySelectorAll(".tab-btn");
-const contents = document.querySelectorAll(".menu-content");
+<button onclick="sendWhatsApp()">📲 WhatsApp</button>
 
-tabs.forEach(t=>{
-t.onclick=()=>{
-tabs.forEach(x=>x.classList.remove("active"));
-contents.forEach(c=>c.classList.remove("active"));
+<button onclick="closeCart()">Fermer</button>
 
-t.classList.add("active");
-document.getElementById(t.dataset.tab).classList.add("active");
+</div>
+
+</div>
+
+<script>
+
+let cart = [];
+
+// ================== SELECT ITEM ==================
+
+document.querySelectorAll(".menu-card").forEach(card=>{
+
+card.onclick=()=>{
+
+let name = card.querySelector("h3").innerText;
+
+let price = parseInt(card.querySelector(".price").innerText);
+
+let item = cart.find(p=>p.name===name);
+
+if(item){
+
+item.qty++;
+
+}else{
+
+cart.push({name, price, qty:1});
+
 }
+
+card.classList.add("selected");
+
+updateCart();
+
+}
+
 });
+
+// ================== CART UPDATE ==================
+
+function updateCart(){
+
+document.getElementById("cartCount").innerText =
+
+cart.reduce((a,b)=>a+b.qty,0);
+
+renderCart();
+
+}
+
+// ================== RENDER CART ==================
+
+function renderCart(){
+
+let box = document.getElementById("cartItems");
+
+box.innerHTML = "";
+
+cart.forEach((item,i)=>{
+
+box.innerHTML += `
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin:10px 0">
+
+<span>${item.name}</span>
+
+<div>
+
+<button class="qty-btn" onclick="minus(${i})">−</button>
+
+<span style="margin:0 10px">${item.qty}</span>
+
+<button class="qty-btn" onclick="plus(${i})">+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+calcTotal();
+
+}
+
+// ================== + / - ==================
+
+function plus(i){
+
+cart[i].qty++;
+
+updateCart();
+
+}
+
+function minus(i){
+
+cart[i].qty--;
+
+if(cart[i].qty<=0){
+
+cart.splice(i,1);
+
+}
+
+updateCart();
+
+}
+
+// ================== TOTAL ==================
+
+function calcTotal(){
+
+let total = cart.reduce((a,b)=>a+b.price*b.qty,0);
+
+document.getElementById("totalPrice").innerText = total;
+
+return total;
+
+}
+
+// ================== MODAL ==================
+
+function openCart(){
+
+document.getElementById("cartModal").style.display="flex";
+
+renderCart();
+
+}
+
+function closeCart(){
+
+document.getElementById("cartModal").style.display="none";
+
+}
+
+// ================== CHECK TABLE ==================
+
+function checkTable(){
+
+let type = document.getElementById("orderType").value;
+
+let table = document.getElementById("tableSelect");
+
+if(type==="surplace"){
+
+table.required = true;
+
+}else{
+
+table.required = false;
+
+}
+
+}
+
+// ================== WHATSAPP ==================
+
+function sendWhatsApp(){
+
+let type = document.getElementById("orderType").value;
+
+let table = document.getElementById("tableSelect").value;
+
+if(type==="surplace" && !table){
+
+alert("Choisis une table !");
+
+return;
+
+}
+
+let total = calcTotal();
+
+let msg = "🧾 *ZAPHIR COMMANDE*%0A%0A";
+
+cart.forEach(i=>{
+
+msg += `• ${i.name} x${i.qty} = ${i.price*i.qty} FDJ%0A`;
+
+});
+
+msg += `%0A💰 Total: ${total} FDJ%0A`;
+
+msg += `📦 Type: ${type}%0A`;
+
+if(type==="surplace"){
+
+msg += `🪑 Table: ${table}%0A`;
+
+}
+
+// CLIENT
+
+window.open(`https://wa.me/77118830?text=${msg}`,"_blank");
+
+// CHEF
+
+let chef = "👨‍🍳 COMMANDE CUISINE%0A%0A" + msg;
+
+console.log(chef);
+
+}
 
 </script>
 
 </body>
+
 </html>
