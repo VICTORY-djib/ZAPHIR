@@ -855,194 +855,110 @@ nav a:hover, nav .active{
 <footer>
 <p>©️ 2026 Zaphir Restaurant</p>
 </footer>
+</section>
 
-<!-- PANIER -->
+<!-- CONTACT -->
+<section class="contact" id="contact">
+<h2>Contact</h2>
+<p>📞 +253 77118830</p>
+<p>📍 Gabod Aviation</p>
+<button>WhatsApp</button>
+</section>
 
-<div id="cartBox">
-
-<h3>🛒 Panier</h3>
-
-<div id="cartItems"></div>
-
-<p>Total: <b><span id="total">0</span> FDJ</b></p>
-
-<input id="tableNumber" type="number" placeholder="Numéro de table (obligatoire)">
-
-<select id="orderType">
-
-<option value="sur place">Sur place</option>
-
-<option value="emporter">À emporter</option>
-
-</select>
-
-<button onclick="sendOrder()">Envoyer ma commande</button>
-
-</div>
+<!-- FOOTER -->
+<footer>
+<p>©️ 2026 Zaphir Restaurant</p>
+</footer>
 
 <script>
 
-/* PANIER */
+/* SLIDER */
 
-let cart = [];
+const slides = document.querySelectorAll(".slide");
 
-/* AJOUT PRODUIT */
+let i = 0;
 
-document.querySelectorAll(".menu-card").forEach(card => {
+setInterval(()=>{
 
-card.onclick = () => {
+slides.forEach(s=>s.classList.remove("active"));
 
-const name = card.querySelector("h3").innerText;
+i = (i+1)%slides.length;
 
-const price = parseInt(card.querySelector(".price").innerText);
+slides[i].classList.add("active");
 
-let item = cart.find(i => i.name === name);
+},4000);
 
-if(item){
+/* TABS */
 
-    item.qty++;
+document.querySelectorAll(".tab-btn").forEach(btn=>{
+
+btn.onclick = ()=>{
+
+document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+
+document.querySelectorAll(".menu-content").forEach(c=>c.classList.remove("active"));
+
+btn.classList.add("active");
+
+document.getElementById(btn.dataset.tab).classList.add("active");
+
+}
+
+});
+
+/* SELECTION */
+
+let selectedItems = [];
+
+document.querySelectorAll(".menu-card").forEach(card=>{
+
+card.onclick = ()=>{
+
+const name = card.querySelector("h3")?.innerText;
+
+const price = card.querySelector(".price")?.innerText;
+
+const item = `${name} - ${price}`;
+
+card.classList.toggle("selected");
+
+if(card.classList.contains("selected")){
+
+selectedItems.push(item);
 
 }else{
 
-    cart.push({name, price, qty:1});
+selectedItems = selectedItems.filter(i=>i!==item);
 
 }
 
-card.classList.add("selected");
-
-updateCart();
-
-};
+}
 
 });
 
-/* UPDATE PANIER */
-
-function updateCart(){
-
-let container = document.getElementById("cartItems");
-
-container.innerHTML = "";
-
-let total = 0;
-
-cart.forEach((item, index)=>{
-
-total += item.price * item.qty;
-
-container.innerHTML += `
-
-<div class="cart-item">
-
-<span>${item.name} x${item.qty}</span>
-
-<div>
-
-<button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
-
-<button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-document.getElementById("total").innerText = total;
-
-}
-
-/* QUANTITÉ */
-
-function changeQty(index, change){
-
-cart[index].qty += change;
-
-if(cart[index].qty <= 0){
-
-cart.splice(index, 1);
-
-}
-
-updateCart();
-
-}
-
-/* ENVOI WHATSAPP */
+/* WHATSAPP */
 
 function sendOrder(){
 
-let table = document.getElementById("tableNumber").value;
+if(selectedItems.length === 0){
 
-let type = document.getElementById("orderType").value;
-
-if(cart.length === 0){
-
-alert("Panier vide ❌");
+alert("Aucun article sélectionné 📌");
 
 return;
 
 }
 
-if(table === ""){
+let message = "🍽️ Commande Zaphir Restaurant:%0A%0A";
 
-alert("Numéro de table obligatoire 📌");
+selectedItems.forEach((item,i)=>{
 
-return;
-
-}
-
-let total = 0;
-
-let msg = "🍽️ COMMANDE ZAPHIR%0A%0A";
-
-msg += "Table: " + table + "%0A";
-
-msg += "Type: " + type + "%0A%0A";
-
-cart.forEach((item,i)=>{
-
-let line = item.price * item.qty;
-
-total += line;
-
-msg += `${i+1}. ${item.name} x${item.qty} = ${line} FDJ%0A`;
+message += `${i+1}. ${item}%0A`;
 
 });
 
-msg += "%0ATOTAL: " + total + " FDJ";
+const phone = "25377118830";
 
-/* CLIENT */
-
-window.open(
-
-"https://wa.me/25377118830?text=" + encodeURIComponent(msg),
-
-"_blank"
-
-);
-
-/* CHEF */
-
-setTimeout(()=>{
-
-window.open(
-
-"https://wa.me/25377118830?text=" + encodeURIComponent("👨‍🍳 CHEF%0A%0A" + msg),
-
-"_blank"
-
-);
-
-},1000);
-
-/* RESET */
-
-cart = [];
-
-updateCart();
+window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
 
 }
 
