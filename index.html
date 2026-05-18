@@ -1,214 +1,343 @@
 <!DOCTYPE html>
+
 <html lang="fr">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Zaphir Restaurant</title>
 
 <style>
 
 /* RESET */
+
 *{
+
     margin:0;
+
     padding:0;
+
     box-sizing:border-box;
+
     font-family:"Segoe UI", Arial, sans-serif;
+
 }
 
 html{scroll-behavior:smooth;}
+
 body{background:#f4f6fb; overflow-x:hidden;}
 
 /* HEADER */
+
 header{
+
     position:fixed;
+
     top:15px;
+
     left:50%;
+
     transform:translateX(-50%);
+
     width:92%;
+
     max-width:1200px;
+
     padding:14px 25px;
+
     border-radius:50px;
+
     background:rgba(255,255,255,0.15);
+
     backdrop-filter:blur(12px);
+
     z-index:1000;
+
 }
 
 nav{
+
     display:flex;
+
     justify-content:center;
+
     gap:20px;
+
     flex-wrap:wrap;
+
 }
 
 nav a{
+
     color:white;
+
     text-decoration:none;
+
     font-weight:600;
+
     padding:10px 20px;
+
     border-radius:30px;
+
 }
 
 nav a:hover, nav .active{
+
     background:white;
+
     color:#2563eb;
+
 }
 
 /* HERO */
+
 .hero{
+
     width:100%;
+
     height:65vh;
+
     position:relative;
+
 }
 
 .slide{
+
     position:absolute;
+
     width:100%;
+
     height:100%;
+
     object-fit:cover;
+
     opacity:0;
+
     transition:1s;
+
 }
 
 .slide.active{opacity:1;}
 
 .overlay{
+
     position:absolute;
+
     inset:0;
+
     background:rgba(0,0,0,0.4);
+
 }
 
 .hero-content{
+
     position:absolute;
+
     top:50%;
+
     left:50%;
+
     transform:translate(-50%,-50%);
+
     text-align:center;
+
     color:white;
-    z-index:2;
+
 }
 
-.hero-content h1{font-size:70px;}
-.hero-content p{font-size:22px;}
+.hero-content h1{font-size:60px;}
+
 .hero-content button{
-    padding:15px 35px;
+
+    padding:15px 30px;
+
     border:none;
+
     border-radius:30px;
+
     background:#2563eb;
+
     color:white;
-}
 
-/* BUTTONS */
-.prev,.next{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    width:50px;
-    height:50px;
-    border-radius:50%;
-    border:none;
-    background:rgba(255,255,255,0.3);
-    color:white;
-    font-size:30px;
-    cursor:pointer;
-}
-
-.prev{left:20px;}
-.next{right:20px;}
-
-/* SECTIONS */
-.about, .contact{
-    padding:80px 20px;
-    text-align:center;
-}
-
-.about h2, .contact h2{
-    font-size:40px;
-    color:#1e3a8a;
-    margin-bottom:20px;
 }
 
 /* MENU */
-.menu-section{
-    padding:80px 20px;
-}
+
+.menu-section{padding:80px 20px;}
 
 .tabs{
+
     display:flex;
+
     justify-content:center;
-    gap:15px;
+
+    gap:10px;
+
     flex-wrap:wrap;
-    margin-bottom:40px;
+
+    margin-bottom:30px;
+
 }
 
 .tab-btn{
-    padding:12px 25px;
+
+    padding:10px 20px;
+
     border:none;
+
     border-radius:30px;
+
     background:white;
+
     cursor:pointer;
-    font-weight:bold;
+
 }
 
 .tab-btn.active{
+
     background:#2563eb;
+
     color:white;
+
 }
 
 .menu-content{display:none;}
+
 .menu-content.active{display:block;}
 
 .menu-grid{
+
     display:grid;
+
     grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
     gap:20px;
+
 }
 
 .menu-card{
+
     background:white;
+
     border-radius:20px;
+
     overflow:hidden;
+
+    cursor:pointer;
+
+    transition:0.2s;
+
+    position:relative;
+
 }
 
 .menu-card img{
+
     width:100%;
-    height:200px;
+
+    height:180px;
+
     object-fit:cover;
+
 }
 
-.menu-info{
-    padding:15px;
-    text-align:center;
-}
+.menu-info{padding:15px;text-align:center;}
 
 .price{
+
     display:inline-block;
+
     margin-top:10px;
+
     background:#2563eb;
+
     color:white;
-    padding:8px 20px;
+
+    padding:6px 15px;
+
     border-radius:20px;
+
+}
+
+/* ✅ SELECTION */
+
+.menu-card.selected{
+
+    border:3px solid #2563eb;
+
+    transform:scale(1.03);
+
+    box-shadow:0 10px 20px rgba(0,0,0,0.2);
+
+}
+
+.menu-card.selected::after{
+
+    content:"✔";
+
+    position:absolute;
+
+    top:10px;
+
+    right:10px;
+
+    background:#2563eb;
+
+    color:white;
+
+    width:25px;
+
+    height:25px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+/* BUTTON */
+
+.order-btn{
+
+    display:block;
+
+    margin:40px auto 0;
+
+    padding:15px 30px;
+
+    background:#25d366;
+
+    color:white;
+
+    border:none;
+
+    border-radius:30px;
+
+    font-size:16px;
+
+    cursor:pointer;
+
 }
 
 /* CONTACT */
-.contact button{
-    padding:12px 30px;
-    background:#25d366;
-    border:none;
-    border-radius:30px;
-    color:white;
-    font-size:16px;
-    cursor:pointer;
-}
 
-/* FOOTER */
-footer{
-    background:#1e3a8a;
-    color:white;
+.contact{
+
     text-align:center;
-    padding:30px;
+
+    padding:60px 20px;
+
 }
 
 </style>
+
 </head>
 
 <body>
@@ -727,48 +856,100 @@ footer{
 <p>©️ 2026 Zaphir Restaurant</p>
 </footer>
 
-<!-- SCRIPT -->
 <script>
 
-// SLIDER
+/* SLIDER */
+
 const slides = document.querySelectorAll(".slide");
-let index = 0;
 
-function show(i){
-slides.forEach(s=>s.classList.remove("active"));
-slides[i].classList.add("active");
-}
-
-document.querySelector(".next").onclick = ()=>{
-index = (index+1)%slides.length;
-show(index);
-};
-
-document.querySelector(".prev").onclick = ()=>{
-index = (index-1+slides.length)%slides.length;
-show(index);
-};
+let i = 0;
 
 setInterval(()=>{
-index = (index+1)%slides.length;
-show(index);
+
+slides.forEach(s=>s.classList.remove("active"));
+
+i = (i+1)%slides.length;
+
+slides[i].classList.add("active");
+
 },4000);
 
-// TABS
-const tabs = document.querySelectorAll(".tab-btn");
-const contents = document.querySelectorAll(".menu-content");
+/* TABS */
 
-tabs.forEach(t=>{
-t.onclick=()=>{
-tabs.forEach(x=>x.classList.remove("active"));
-contents.forEach(c=>c.classList.remove("active"));
+document.querySelectorAll(".tab-btn").forEach(btn=>{
 
-t.classList.add("active");
-document.getElementById(t.dataset.tab).classList.add("active");
+btn.onclick = ()=>{
+
+document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+
+document.querySelectorAll(".menu-content").forEach(c=>c.classList.remove("active"));
+
+btn.classList.add("active");
+
+document.getElementById(btn.dataset.tab).classList.add("active");
+
 }
+
 });
+
+/* SELECTION */
+
+let selectedItems = [];
+
+document.querySelectorAll(".menu-card").forEach(card=>{
+
+card.onclick = ()=>{
+
+const name = card.querySelector("h3")?.innerText;
+
+const price = card.querySelector(".price")?.innerText;
+
+const item = `${name} - ${price}`;
+
+card.classList.toggle("selected");
+
+if(card.classList.contains("selected")){
+
+selectedItems.push(item);
+
+}else{
+
+selectedItems = selectedItems.filter(i=>i!==item);
+
+}
+
+}
+
+});
+
+/* WHATSAPP */
+
+function sendOrder(){
+
+if(selectedItems.length === 0){
+
+alert("Aucun article sélectionné 📌");
+
+return;
+
+}
+
+let message = "🍽️ Commande Zaphir Restaurant:%0A%0A";
+
+selectedItems.forEach((item,i)=>{
+
+message += `${i+1}. ${item}%0A`;
+
+});
+
+const phone = "25377118830";
+
+window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+
+}
 
 </script>
 
 </body>
+
 </html>
