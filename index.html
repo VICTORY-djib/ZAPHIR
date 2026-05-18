@@ -58,93 +58,35 @@ header{
 
 }
 
-nav{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:20px;
-
-    flex-wrap:wrap;
-
-}
+nav{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
 
 nav a{
 
-    color:white;
+    color:white;text-decoration:none;font-weight:600;
 
-    text-decoration:none;
-
-    font-weight:600;
-
-    padding:10px 20px;
-
-    border-radius:30px;
+    padding:10px 20px;border-radius:30px;
 
 }
 
-nav a:hover, nav .active{
-
-    background:white;
-
-    color:#2563eb;
-
-}
+nav a:hover, nav .active{background:white;color:#2563eb;}
 
 /* HERO */
 
-.hero{
+.hero{width:100%;height:65vh;position:relative;}
 
-    width:100%;
-
-    height:65vh;
-
-    position:relative;
-
-}
-
-.slide{
-
-    position:absolute;
-
-    width:100%;
-
-    height:100%;
-
-    object-fit:cover;
-
-    opacity:0;
-
-    transition:1s;
-
-}
+.slide{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0;transition:1s;}
 
 .slide.active{opacity:1;}
 
-.overlay{
-
-    position:absolute;
-
-    inset:0;
-
-    background:rgba(0,0,0,0.4);
-
-}
+.overlay{position:absolute;inset:0;background:rgba(0,0,0,0.4);}
 
 .hero-content{
 
-    position:absolute;
-
-    top:50%;
-
-    left:50%;
+    position:absolute;top:50%;left:50%;
 
     transform:translate(-50%,-50%);
 
-    text-align:center;
-
-    color:white;
+    text-align:center;color:white;
 
 }
 
@@ -152,27 +94,9 @@ nav a:hover, nav .active{
 
 .hero-content button{
 
-    padding:15px 30px;
+    padding:15px 30px;border:none;border-radius:30px;
 
-    border:none;
-
-    border-radius:30px;
-
-    background:#2563eb;
-
-    color:white;
-
-    cursor:pointer;
-
-}
-
-/* ABOUT */
-
-.about{
-
-    text-align:center;
-
-    padding:60px 20px;
+    background:#2563eb;color:white;cursor:pointer;
 
 }
 
@@ -180,41 +104,17 @@ nav a:hover, nav .active{
 
 .menu-section{padding:80px 20px;}
 
-.tabs{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:10px;
-
-    flex-wrap:wrap;
-
-    margin-bottom:30px;
-
-}
+.tabs{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:30px;}
 
 .tab-btn{
 
-    padding:10px 20px;
+    padding:10px 20px;border:none;border-radius:30px;
 
-    border:none;
-
-    border-radius:30px;
-
-    background:white;
-
-    cursor:pointer;
+    background:white;cursor:pointer;
 
 }
 
-.tab-btn.active{
-
-    background:#2563eb;
-
-    color:white;
-
-}
+.tab-btn.active{background:#2563eb;color:white;}
 
 .menu-content{display:none;}
 
@@ -232,89 +132,85 @@ nav a:hover, nav .active{
 
 .menu-card{
 
-    background:white;
+    background:white;border-radius:20px;overflow:hidden;
 
-    border-radius:20px;
-
-    overflow:hidden;
-
-    cursor:pointer;
-
-    transition:0.2s;
-
-    position:relative;
+    cursor:pointer;transition:0.2s;
 
 }
 
-.menu-card img{
+.menu-card:hover{transform:scale(1.03);}
 
-    width:100%;
+.menu-card img{width:100%;height:180px;object-fit:cover;}
 
-    height:180px;
-
-    object-fit:cover;
-
-}
-
-.menu-info{padding:15px;text-align:center;}
+.menu-info{text-align:center;padding:15px;}
 
 .price{
 
-    display:inline-block;
+    display:inline-block;margin-top:10px;
 
-    margin-top:10px;
+    background:#2563eb;color:white;
+
+    padding:6px 15px;border-radius:20px;
+
+}
+
+/* CART */
+
+.cart-box{
+
+    position:fixed;
+
+    right:15px;
+
+    bottom:15px;
+
+    width:280px;
+
+    background:white;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+
+    z-index:2000;
+
+}
+
+.qty-btn{
+
+    padding:5px 10px;
+
+    margin:5px;
+
+    border:none;
+
+    border-radius:8px;
 
     background:#2563eb;
 
     color:white;
 
-    padding:6px 15px;
-
-    border-radius:20px;
-
-}
-
-/* SELECT */
-
-.menu-card.selected{
-
-    border:3px solid #2563eb;
-
-    transform:scale(1.03);
-
-}
-
-/* BUTTON */
-
-.order-btn{
-
-    display:block;
-
-    margin:40px auto 0;
-
-    padding:15px 30px;
-
-    background:#25d366;
-
-    color:white;
-
-    border:none;
-
-    border-radius:30px;
-
-    font-size:16px;
-
     cursor:pointer;
 
 }
 
-/* CONTACT */
+.send{
 
-.contact{
+    width:100%;
 
-    text-align:center;
+    padding:10px;
 
-    padding:60px 20px;
+    background:#25d366;
+
+    border:none;
+
+    border-radius:10px;
+
+    color:white;
+
+    cursor:pointer;
 
 }
 
@@ -822,6 +718,8 @@ nav a:hover, nav .active{
 </div>
 </div>
 
+div>
+
 </section>
 
 <!-- CART -->
@@ -846,7 +744,7 @@ nav a:hover, nav .active{
 
 <select id="table" style="display:none">
 
-<option value="">Choisir table</option>
+<option value="">Table</option>
 
 <option>T1</option><option>T2</option><option>T3</option><option>T4</option>
 
@@ -872,15 +770,9 @@ function addItem(name, price){
 
 let found = cart.find(i=>i.name===name);
 
-if(found){
+if(found) found.qty++;
 
-found.qty++;
-
-}else{
-
-cart.push({name,price,qty:1});
-
-}
+else cart.push({name,price,qty:1});
 
 renderCart();
 
@@ -890,17 +782,15 @@ function changeQty(name, action){
 
 let item = cart.find(i=>i.name===name);
 
+if(!item) return;
+
 if(action==='plus') item.qty++;
 
 if(action==='minus'){
 
 item.qty--;
 
-if(item.qty<=0){
-
-cart = cart.filter(i=>i.name!==name);
-
-}
+if(item.qty<=0) cart = cart.filter(i=>i.name!==name);
 
 }
 
@@ -910,33 +800,29 @@ renderCart();
 
 function renderCart(){
 
-let html = "";
+let html="";
 
-let total = 0;
+let total=0;
 
-cart.forEach(item=>{
+cart.forEach(i=>{
 
-total += item.price * item.qty;
+total += i.price*i.qty;
 
 html += `
 
 <div>
 
-${item.name} (${item.price} FDJ)
+${i.name} (${i.price})
 
 <br>
 
-<button class="qty-btn" onclick="changeQty('${item.name}','minus')">-</button>
+<button class="qty-btn" onclick="changeQty('${i.name}','minus')">-</button>
 
-${item.qty}
+${i.qty}
 
-<button class="qty-btn" onclick="changeQty('${item.name}','plus')">+</button>
+<button class="qty-btn" onclick="changeQty('${i.name}','plus')">+</button>
 
-</div>
-
-<hr>
-
-`;
+</div><hr>`;
 
 });
 
@@ -948,91 +834,41 @@ document.getElementById("total").innerText = total;
 
 function toggleTable(){
 
-let type = document.getElementById("orderType").value;
-
 document.getElementById("table").style.display =
 
-type==="onsite" ? "block" : "none";
+document.getElementById("orderType").value==="onsite" ? "block" : "none";
 
 }
 
 function sendOrder(){
 
-if(cart.length===0){
+if(cart.length===0){alert("Panier vide");return;}
 
-alert("Panier vide");
+let type=document.getElementById("orderType").value;
 
-return;
+let table=document.getElementById("table").value;
 
-}
+if(!type){alert("Choisir type");return;}
 
-let type = document.getElementById("orderType").value;
+if(type==="onsite" && !table){alert("Choisir table");return;}
 
-let table = document.getElementById("table").value;
+let msg="🍽️ Zaphir Restaurant%0A%0A";
 
-if(!type){
-
-alert("Choisir type commande");
-
-return;
-
-}
-
-if(type==="onsite" && !table){
-
-alert("Choisir table");
-
-return;
-
-}
-
-let total = 0;
-
-let msgClient = "🍽️ Zaphir Restaurant%0A%0A";
-
-let msgChef = "🔥 COMMANDE CUISINE%0A%0A";
+let total=0;
 
 cart.forEach(i=>{
 
-total += i.price*i.qty;
+total+=i.price*i.qty;
 
-msgClient += `${i.qty}x ${i.name} - ${i.price*i.qty} FDJ%0A`;
-
-msgChef += `${i.qty}x ${i.name}%0A`;
+msg+=`${i.qty}x ${i.name} - ${i.price*i.qty} FDJ%0A`;
 
 });
 
-msgClient += `%0ATotal: ${total} FDJ`;
+msg+=`%0ATotal: ${total} FDJ`;
 
-msgChef += `%0A---%0ATotal: ${total} FDJ`;
+window.open(`https://wa.me/25377118830?text=${msg}`,"_blank");
 
-if(type==="onsite"){
-
-msgClient += `%0AType: Sur place - ${table}`;
-
-msgChef += `%0ATable: ${table}`;
-
-}else{
-
-msgClient += `%0AType: Commande`;
-
-msgChef += `%0AType: Commande`;
-
-}
-
-/* CLIENT WHATSAPP */
-
-window.open(`https://wa.me/25377118830?text=${msgClient}`,"_blank");
-
-/* CHEF WHATSAPP */
-
-setTimeout(()=>{
-
-window.open(`https://wa.me/25377118830?text=${msgChef}`,"_blank");
-
-},1500);
-
-cart = [];
+cart=[];
 
 renderCart();
 
